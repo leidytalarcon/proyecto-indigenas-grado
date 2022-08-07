@@ -23,26 +23,8 @@ class filtroController extends BaseController
    
     public function listar(){
 
-        $filtro =filtro::all();
-        return response()->json($filtro, 200);
-    }
-
-    public function nuevo(){
-        $usuarios = user::all();
-        return view('filtro.filtro_crear', compact('usuarios'));
-    }
-
-    public function guardar(Request $request){
-
-        comunidad::create([
-            'nombre' =>$request['nombre'],
-            'contenido' =>$request['contenido'],
-            'fecha_creacion' =>$request['fecha_creacion'],
-            'fk_id_usuario'=>$request['fk_id_usuario']
-            
-        ]);
-
-        return redirect()->route('filtro.index');
+        $filtros =filtro::all();
+        return response()->json($filtros, 200);
     }
 
     public function editar($id_filtro){

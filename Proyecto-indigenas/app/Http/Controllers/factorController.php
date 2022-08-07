@@ -23,25 +23,8 @@ class factorController extends BaseController
    
     public function listar(){
 
-        $factor =factor::all();
-        return response()->json($factor, 200);
-    }
-
-    public function nuevo(){
-        $usuarios = user::all();
-        return view('factor.factor_crear', compact('usuarios'));
-    }
-
-    public function guardar(Request $request){
-
-        comunidad::create([
-            'nombre' =>$request['valor'],
-            'descripcion' =>$request['descripcion'],
-            'fk_id_usuario'=>$request['fk_id_usuario'],
-            'fecha_creacion' =>$request['fecha_creacion']
-        ]);
-
-        return redirect()->route('factor.index');
+        $factores =factor::all();
+        return response()->json($factores, 200);
     }
 
     public function editar($id_factor){

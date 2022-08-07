@@ -10,7 +10,7 @@ use Illuminate\Routing\Controller as BaseController;
 use App\Model\reporte_factor;
 use App\user;
 
-class reporte_factorController extends BaseController
+class reporteFactorController extends BaseController
 
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
