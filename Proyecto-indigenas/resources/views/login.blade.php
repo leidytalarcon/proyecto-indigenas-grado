@@ -1,5 +1,5 @@
 
-@extends('layout_external')
+@extends('layout_external.layout_external')
 @section('content')
 <body class="bg-gradient-primary">
 

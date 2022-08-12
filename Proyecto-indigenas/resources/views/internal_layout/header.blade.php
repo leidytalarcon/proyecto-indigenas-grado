@@ -5,7 +5,6 @@
       <h1 class="logo me-auto"><a href="{{ route('inicio') }}">ProInd</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-      <label id="userName_admin">Bienvenido</label>
       <nav id="navbar_admin" class="navbar">
         <ul>
          
@@ -35,8 +34,6 @@
       <h1 class="logo me-auto"><a href="{{ route('inicio') }}">ProInd</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-      <label id="userName_usuario">Bienvenido</label>
-     
       <nav id="navbar_user" class="navbar">
         <ul>
         <!-- USUARIO-->

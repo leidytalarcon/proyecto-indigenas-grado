@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('internal_layout.layout')
 @section('content')
     
                           <!-- CONTENIDO -->    

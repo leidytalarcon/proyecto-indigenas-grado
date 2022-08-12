@@ -11,6 +11,8 @@
 
   <!-- JQuery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+  <script src="{{asset("assets/js/jquery.validate.js") }}"></script>
 
   <!-- Favicons -->
   <link href="{{ asset("assets/img/favicon.png") }}" rel="icon">
@@ -31,7 +33,7 @@
 
   <!-- Template Main CSS File -->
   <link href="{{ asset("assets/css/style.css") }}" rel="stylesheet">
-  <link href="{{ asset("assets/css/sb-admin-2.min.css") }}" rel="stylesheet">
+  <link href="{{ asset("assets/css/sb-admin-2.css") }}" rel="stylesheet">
 
 
   <!-- =======================================================
@@ -46,7 +48,7 @@
 
     
 <!--Incluir header.blade.php -->
-@include('header_external')
+@include('internal_layout.header')
 
 <section id="hero2" class="d-flex align-items-center">
 
@@ -78,7 +80,7 @@
 
 
 <!-- Incluir footer.blade.php -->
- @include('footer')
+ @include('internal_layout.footer')
 
 
 <!-- Scroll to Top Button-->
@@ -103,6 +105,44 @@
 <script src="{{asset("assets/js/main.js") }}"></script>
 
 <script src="{{asset("assets/js/js.cookie.js") }}"></script>
+
+
+<script>
+  jQuery(document).ready(function () {
+                
+                let token = Cookies.get('JWT');
+        
+                $.ajax({
+                  url: '{{ route('auth.user') }}',
+                  type:"POST",
+                  data:{
+                    token:token
+                  },
+                  success:function(response){
+                    let user = response.user;
+
+                  console.log(user);
+                    
+                    if(user.fk_id_rol == 2){
+                      $("#userName_admin").empty();
+                      $("#userName_admin").append(user.nombre);
+                      $("#header_admin").hide();
+                    }
+                    if(user.fk_id_rol == 1){
+                      $("#userName_usuario").empty();
+                      $("#userName_usuario").append(user.nombre);
+                      $("#header_usuario").hide();
+                    }
+                  },
+                  error: function(xhr, status, error){
+                    var errorMessage = xhr.status + ': ' + xhr.statusText
+                    alert('Error - ' + errorMessage);
+                }
+                });
+  });
+
+                            
+</script>
 
 </body>
 
