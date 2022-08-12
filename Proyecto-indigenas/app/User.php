@@ -12,7 +12,7 @@ class User extends Authenticatable implements JWTSubject
 
     protected $connection = 'mysql';
 
-    protected $table = 'users';
+    protected $table = 'user';
 
     public $timestamps = false;
 
