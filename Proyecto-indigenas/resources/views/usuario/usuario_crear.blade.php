@@ -50,7 +50,7 @@
                             <br>
                             <strong>TIPO DOCUMENTO:</strong>
                             <br>
-                            <select name="fk_id_tipo_documento" id="fk_id_tipo_documento" style="width:500px"  >
+                            <select name="fk_id_tipo_documento" id="fk_id_tipo_documento" style="width:70%, align:center"  >
                                     @foreach($tipos_documento as $tipo_documento)
                                         <option value="{{$tipo_documento['id_tipo_documento']}}">{{$tipo_documento["nombre"]}}</option> 
                                     @endforeach
@@ -58,7 +58,7 @@
                             <br>
                             <strong>ROL:</strong>
                             <br>
-                            <select name="fk_id_rol" id="fk_id_rol" style="width:500px"  >
+                            <select name="fk_id_rol" id="fk_id_rol" style="width:70%, align:center"  >
                                     @foreach($roles as $rol)
                                         <option value="{{$rol['id_rol']}}">{{$rol["nombre"]}}</option> 
                                     @endforeach
@@ -87,6 +87,11 @@
               },"Solo puede ingresar letras y espacios"
         );
 
+        $.validator.addMethod("correo",function(value) {
+                return /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(value);
+              },"Direccion de correo no valida"
+        );
+
         $("#userForm").validate({
               rules: {
                 nombre : {
@@ -95,18 +100,22 @@
                 },
                 documento:{
                   required:true,
-                  min: 5
+                  minlength: 5,
+                  maxlength: 15
                 },
                 telefono:{
                   required:true,
-                  number: true
+                  number: true,
+                  minlength: 5,
+                  maxlength: 15
                 },
                 email:{
                   required:true,
-                  email: true
+                  correo: true
                 },
                 password:{
-                  required:true
+                  required:true,
+                  maxlength: 10
                 },
 
                
@@ -117,18 +126,22 @@
                 },
                 documento: {
                   required: "El documento es obligatorio",
-                  min: "Debe contener minimo 5 digitos"
+                  minlength: "Debe contener minimo 5 digitos",
+                  maxlength: "Debe contener maximo 15 digitos"
                 },
                 telefono: {
                   required: "El telefono es obligatorio",
-                  number: "Solo puede ingresar números"
+                  number: "Solo puede ingresar números",
+                  minlength: "Debe contener minimo 5 digitos",
+                  maxlength: "Debe contener maximo 15 digitos"
                 },
                 email: {
                   required: "El email es obligatorio",
-                  email: "debe contener @ y terminar en .com"
+                  correo: "Ingrese una dirección de correo valida"
                 },
                 password: {
-                  required: "El password es obligatorio"
+                  required: "El password es obligatorio",
+                  maxlength: "Debe contener maximo 10 digitos"
                 }
               },
               submitHandler : function(form) {
