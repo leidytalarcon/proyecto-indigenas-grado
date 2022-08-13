@@ -1,4 +1,4 @@
-@extends('layout_external.layout_external')
+@extends('external_layout.layout_external')
 
 @section('content')
 

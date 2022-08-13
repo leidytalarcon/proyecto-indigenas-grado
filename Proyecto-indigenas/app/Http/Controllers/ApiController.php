@@ -37,7 +37,7 @@ class ApiController extends Controller
     public function inicio_external()
     {
         
-        return view('welcome_external');
+        return view('external_layout.welcome_external');
 
     }
 
@@ -46,7 +46,7 @@ class ApiController extends Controller
         $token = $request->header('Authorization');
         
         $user = JWTAuth::getUser($token);
-        return view('welcome',compact('user'));
+        return view('internal_layout.welcome',compact('user'));
 
     }
 

@@ -46,7 +46,7 @@
 
     
 <!--Incluir header.blade.php -->
-@include('layout_external.header_external')
+@include('external_layout.header_external')
 
 <section id="hero2" class="d-flex align-items-center">
 
@@ -78,7 +78,7 @@
 
 
 <!-- Incluir footer.blade.php -->
- @include('layout_external.footer')
+ @include('internal_layout.footer')
 
 
 <!-- Scroll to Top Button-->
