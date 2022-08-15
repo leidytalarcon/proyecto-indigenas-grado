@@ -172,9 +172,10 @@
                                     id_dpto = $(this).attr('id');
 
                                     e.preventDefault();
-                                    route_list = '{{ route('filtro.listar', 'id_dpto') }}';
+                                    route_list = '{{ route('filtro.listar', ":id") }}';
+                                    route = route_list.replace(':id', id_dpto);
                     
-                                    window.location.href = route_list;
+                                    window.location.href = route;
                                 })
 
                             });

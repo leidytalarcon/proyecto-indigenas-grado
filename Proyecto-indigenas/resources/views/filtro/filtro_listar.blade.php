@@ -18,8 +18,8 @@
                                 <strong>{{$filtro["nombre"]}}:</strong>
                                 <br>
                                 <select name="fk_id_tipo_documento" id="fk_id_tipo_documento" style="width:70%, align:center"  >
-                                        @foreach($filtro.opciones as $opcion)
-                                            <option value="{{$opcion['id_opcion']}}">{{$opcion["nombre"]}}</option> 
+                                        @foreach($filtro["opciones"] as $opcion)
+                                            <option value="{{$opcion['id_opcion']}}">{{$opcion["descripcion"]}}</option> 
                                         @endforeach
                                 </select>
                                 </div>
