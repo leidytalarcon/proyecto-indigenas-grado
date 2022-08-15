@@ -20,11 +20,16 @@ class filtroController extends BaseController
         return view('filtro.filtro_listar');
 
     }
-   
-    public function listar(){
 
+    public function mapa()
+    {
+        return view('filtro.filtro_mapa');
+
+    }
+   
+    public function listar($id_dpto){
         $filtros =filtro::all();
-        return response()->json($filtros, 200);
+        return view('filtro.filtro_listar', compact('filtros','id_dpto'));
     }
 
     public function editar($id_filtro){
