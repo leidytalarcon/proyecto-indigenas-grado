@@ -159,7 +159,7 @@
                                     </svg>
                                 </div>
                             </div>
-                            <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" id="map_siguiente">Siguiente</button>
+                            
         
                         </div>
                         <!-- /.container-fluid -->
@@ -168,19 +168,17 @@
                         <script>
                             jQuery(document).ready(function () {
                                 
-                                $('path').on('click', function() {
-                                    alert($(this).attr('id'));
-                                })
-                            
-                                $('#map_siguiente').click(function(e) {
-                                e.preventDefault();
-                                route_list = '{{ route('foro.nuevo') }}';
+                                $('path').on('click', function(e) {
+                                    id_dpto = $(this).attr('id');
+
+                                    e.preventDefault();
+                                    route_list = '{{ route('filtro.listar', 'id_dpto') }}';
                     
-                                window.location.href = route_list;
-                            });
+                                    window.location.href = route_list;
+                                })
+
                             });
 
-                            
                         </script>
       
     @endsection

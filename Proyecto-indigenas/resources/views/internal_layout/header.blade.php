@@ -57,7 +57,7 @@
      
       $('#filtro').click(function(e) {
           e.preventDefault();
-          route_list = '{{ route('filtro.index') }}';
+          route_list = '{{ route('filtro.mapa') }}';
 
           window.location.href = route_list;
       });

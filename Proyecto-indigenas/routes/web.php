@@ -18,7 +18,7 @@ Route::post('register', 'ApiController@register');by the RouteServiceProvider wi
 |
 */
 
-////////////LOGIN///////////////
+//////////////// LOGIN ////////////////
 
 Route::get('/', [
     'uses' =>'ApiController@inicio_external', 
@@ -35,7 +35,7 @@ Route::post('auth/login/', [
    'as' => 'auth.login' 
 ]);
 
-/////////// SEGURIDAD //////////////
+//////////////// SEGURIDAD ////////////////
 
 Route::group(['middleware' => 'auth.jwt'], function () {
  
@@ -53,13 +53,8 @@ Route::group(['middleware' => 'auth.jwt'], function () {
         'uses' =>'ApiController@getAuthUser', 
        'as' => 'auth.user' 
     ]);
-    
-    Route::get('usuario/nuevo/', [
-        'uses' =>'usuarioController@nuevo', 
-        'as' => 'usuario.nuevo' 
-    ]);  
 
-    ///////////////// FILTRO /////////////////
+    //////////////// FILTRO ////////////////
 
     Route::get('filtro/index', [
         'uses' =>'filtroController@index', 
@@ -67,18 +62,22 @@ Route::group(['middleware' => 'auth.jwt'], function () {
     ]);
 
     Route::get('filtro/mapa', [
-        'uses' =>'filtroController@filtroMapa', 
+        'uses' =>'filtroController@mapa', 
         'as' => 'filtro.mapa' 
     ]);
 
-    Route::get('filtro/', [
-        'uses' =>'filtroController@filtroLista', 
-        'as' => 'filtro.listado' 
+    Route::get('filtro/{id_dpto}', [
+        'uses' =>'filtroController@listar', 
+        'as' => 'filtro.listar' 
     ]);
 
     Route::post('/filtro/guardar','filtroController@guardar');
 
-    //////////////// PDF-REPORTE /////////////
+    //////////////// REPORTE ////////////////
+
+    Route::post('/reporte/generar','reporteController@generar');
+
+    //////////////// PDF-REPORTE ////////////////
 
     Route::get('/pdf/reporte', 'PDFController@PDFreporte')->name('descargarPDF');
 
@@ -93,6 +92,11 @@ Route::group(['middleware' => 'auth.jwt'], function () {
         'uses'=>'usuarioController@listar',
         'as' => 'usuario.listar'
     ]);
+
+    Route::get('usuario/nuevo/', [
+        'uses' =>'usuarioController@nuevo', 
+        'as' => 'usuario.nuevo' 
+    ]);  
     
     Route::post('auth/register/', [
         'uses' =>'ApiController@register', 
@@ -108,7 +112,7 @@ Route::group(['middleware' => 'auth.jwt'], function () {
         'as' => 'usuario.actualizar'
     ]); 
 
-    //////////////// FOROS /////////////////
+    //////////////// FOROS ////////////////
 
     Route::get('foro/index', [
         'uses' =>'foroController@index', 
@@ -136,7 +140,7 @@ Route::group(['middleware' => 'auth.jwt'], function () {
         'as' => 'foro.actualizar'
     ]);
 
-    ////////// FORO-COMENTARIO ////////////
+    //////////////// FORO-COMENTARIO ////////////////
 
     Route::get('foro/comentario/{id_foro}/', [
         'uses' =>'foroController@comentario',   
@@ -148,7 +152,7 @@ Route::group(['middleware' => 'auth.jwt'], function () {
     ]);
     Route::post('/foro/comentario/guardar','foroController@guardar_comentario');
 
-    /////////// FORO-RESPUESTA ////////////////
+    //////////////// FORO-RESPUESTA ////////////////
 
     Route::post('/foro/respuesta/guardar','foroController@guardar_respuesta');
 
