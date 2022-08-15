@@ -9,10 +9,9 @@
         <ul>
          
           <!-- ADMINISTRADOR-->
-          <li><a class="nav-link scrollto active" href="/" id="comunidad">Comunidades</a></li>
           <li class="dropdown"><a href="#"><span>Administrador</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="/" id="foro_crear">Foros</a></li>
+              <li><a href="/" id="filtro">Filtro</a></li>
               <li><a href="/" id="usuario">Usuarios</a></li>
             </ul>
           </li>
@@ -38,12 +37,7 @@
         <ul>
         <!-- USUARIO-->
           <li><a class="nav-link scrollto active" href="/" id="foro">Foros</a></li>
-          <li class="dropdown"><a id="menu_usuario" href="#"><span>Usuario</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="{{ route('comunidad.index') }}" id="comunidad">Comunidades</a></li>
-              <li><a href="/" id="indigena">Indigenas</a></li>
-            </ul>
-          </li>
+          <li><a class="nav-link scrollto active" href="/" id="filtro">Filtro</a></li>
      
           <form class="user" id="logoutFormu">
               <button type="submit" id="submit" class="btn btn-primary btn-user btn-block">
@@ -60,16 +54,10 @@
 <script type="text/javascript">
   jQuery(document).ready(function () {//clasesin
       
-      $('#comunidad').click(function(e) {
+     
+      $('#filtro').click(function(e) {
           e.preventDefault();
-          route_list = '{{ route('comunidad.index') }}';
-
-          window.location.href = route_list;
-      });
-
-      $('#indigena').click(function(e) {
-          e.preventDefault();
-          route_list = '{{ route('indigena.index') }}';
+          route_list = '{{ route('filtro.index') }}';
 
           window.location.href = route_list;
       });
@@ -111,7 +99,7 @@
                 }
                 });
             });
-            $('#logoutFormu').on('submit',function(event){
+      $('#logoutFormu').on('submit',function(event){
                 event.preventDefault();
                 let token = Cookies.get('JWT');
                 

@@ -35,27 +35,7 @@ Route::post('auth/login/', [
    'as' => 'auth.login' 
 ]);
 
-Route::post('auth/register/', [
-    'uses' =>'ApiController@register', 
-   'as' => 'auth.register' 
-]);
-
-Route::get('usuario/index', [
-    'uses' =>'usuarioController@index', 
-'as' => 'usuario.index' 
-]);
-
-Route::get('usuario/', [
-    'uses'=>'usuarioController@listar',
-    'as' => 'usuario.listar'
-]);
-
-Route::get('usuario/nuevo/', [
-    'uses' =>'usuarioController@nuevo', 
-    'as' => 'usuario.nuevo' 
-]);
-
-/////////SEGURIDAD//////////////
+/////////// SEGURIDAD //////////////
 
 Route::group(['middleware' => 'auth.jwt'], function () {
  
@@ -73,88 +53,52 @@ Route::group(['middleware' => 'auth.jwt'], function () {
         'uses' =>'ApiController@getAuthUser', 
        'as' => 'auth.user' 
     ]);
+    
+    Route::get('usuario/nuevo/', [
+        'uses' =>'usuarioController@nuevo', 
+        'as' => 'usuario.nuevo' 
+    ]);  
+
+    ///////////////// FILTRO /////////////////
+
+    Route::get('filtro/index', [
+        'uses' =>'filtroController@index', 
+    'as' => 'filtro.index' 
+    ]);
+
+    Route::get('filtro/mapa', [
+        'uses' =>'filtroController@filtroMapa', 
+        'as' => 'filtro.mapa' 
+    ]);
+
+    Route::get('filtro/', [
+        'uses' =>'filtroController@filtroLista', 
+        'as' => 'filtro.listado' 
+    ]);
+
+    Route::post('/filtro/guardar','filtroController@guardar');
+
+    //////////////// PDF-REPORTE /////////////
+
+    Route::get('/pdf/reporte', 'PDFController@PDFreporte')->name('descargarPDF');
+
+    //////////////// USUARIOS ////////////////
    
-        
-
-    /////////////COMUNIDAD////////////////
-
-    Route::get('comunidad/index', [
-        'uses' =>'comunidadController@index', 
-    'as' => 'comunidad.index' 
+    Route::get('usuario/index', [
+        'uses' =>'usuarioController@index', 
+    'as' => 'usuario.index' 
     ]);
-
-    Route::get('comunidad/', [
-        'uses' =>'comunidadController@listar', 
-        'as' => 'comunidad.listar' 
+    
+    Route::get('usuario/', [
+        'uses'=>'usuarioController@listar',
+        'as' => 'usuario.listar'
     ]);
-
-    Route::get('comunidad/nuevo/', [
-        'uses' =>'comunidadController@nuevo', 
-        'as' => 'comunidad.nuevo' 
+    
+    Route::post('auth/register/', [
+        'uses' =>'ApiController@register', 
+       'as' => 'auth.register' 
     ]);
-
-    Route::post('/comunidad/guardar','comunidadController@guardar');
-
-    Route::post('comunidad/actualizar/{id_comunidad}/', [
-        'uses'=>'comunidadController@actualizar',
-        'as'=>'comunidad.actualizar'
-    ]);
-
-    Route::get('comunidad/editar/{id_comunidad}/',[
-        'uses'=> 'comunidadController@editar',
-        'as'=> 'comunidad.editar'
-    ]);
-
-    /////////////// INDIGENA ////////
-    Route::get('indigena/index', [
-        'uses' =>'indigenaController@index', 
-    'as' => 'indigena.index' 
-    ]);
-
-    Route::get('indigena/', [
-        'uses' =>'indigenaController@listar', 
-        'as' => 'indigena.listar' 
-    ]);
-
-    Route::get('indigena/nuevo/', [
-        'uses' =>'indigenaController@nuevo',   
-        'as' => 'indigena.nuevo'
-    ]);
-
-    Route::post('/indigena/guardar', 'indigenaController@guardar');
-
-    Route::post('indigena/actualizar/{id_indigena}/', [
-        'uses' =>'indigenaController@actualizar',   
-        'as' => 'indigena.actualizar'
-    ]);
-
-    Route::get('indigena/editar/{id_indigena}/', [
-        'uses' =>'indigenaController@editar',   
-        'as' => 'indigena.editar'
-    ]);
-
-    ///////////// PDF-INDIGENAS /////////////
-
-    Route::get('/pdf/indigena', 'PDFController@PDFindigena')->name('descargarPDFindigena');
-
-    ////////////// COMUNIDAD-INDIGENA ///////
-
-    Route::get('comunidad/indigenas/guardar/{id_comunidad}/{id_indigena}', [
-        'uses' =>'comunidadController@indigenas_guardar',   
-        'as' => 'comunidad.indigenas.guardar'
-    ]);
-
-    Route::post('/comunidad/indigenas/buscar', 'comunidadController@indigenas_buscar');
-
-    Route::get('comunidad/indigenas/eliminar/{id_indigena}', [
-        'uses' =>'comunidadController@indigenas_eliminar',   
-        'as' => 'comunidad.indigenas.eliminar'
-    ]);
-
-    ///////////////////// USUARIOS /////////////////////////////
-   
-   
-
+    
     Route::get('usuario/editar/{id_usuario}/',[
         'uses'=> 'usuarioController@editar',
         'as'=> 'usuario.editar'
@@ -212,6 +156,5 @@ Route::group(['middleware' => 'auth.jwt'], function () {
         'uses' =>'foroController@eliminar_respuesta',   
         'as' => 'respuesta.eliminar'
     ]);
-
 
 });
