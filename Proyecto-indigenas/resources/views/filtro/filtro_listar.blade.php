@@ -11,10 +11,11 @@
                           
                         <div class="header-center">FILTROS:</div>
 
-                        <div class="card-body">
-                            
+                        <div class="row">
+                        
                             @foreach($filtros as $filtro)
-                                <div class="form-group">
+                            <div class="form-group col-md-6">
+
                                 <strong>{{$filtro["nombre"]}}:</strong>
                                 <br>
                                 <select name="fk_id_tipo_documento" id="fk_id_tipo_documento" style="width:70%, align:center"  >
@@ -25,15 +26,6 @@
                                 </div>
                             @endforeach
 
-                            <div class="form-group">
-                              <label for=""class="col-12">NOMBRE </label>
-                              <input type="text" class="form-control col-md-15" name="nombre" placeholder="digite el nombre">
-                            </div>
-                            <div class="form-group">
-                              <label for=""class="col-12">CONTENIDO</label>
-                              ​<textarea id="contenido" rows="10" cols="70" class="form-control col-md-15" name="contenido" placeholder="digite contenido"></textarea>
-                            </div>
-                        
                          <div class="row form-group">
                                 <button type="submit" class="btn-success col-md-9 offset-2">GUARDAR</button>
                             </div>
