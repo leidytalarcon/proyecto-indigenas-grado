@@ -71,8 +71,6 @@ Route::group(['middleware' => 'auth.jwt'], function () {
         'as' => 'filtro.listar' 
     ]);
 
-    Route::post('/filtro/guardar','filtroController@guardar');
-
     //////////////// REPORTE ////////////////
 
     Route::post('/reporte/generar','reporteController@generar');
