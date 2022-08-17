@@ -40,5 +40,27 @@ class OpcionSeeder extends Seeder
             'fk_id_filtro' => 1,
             'fk_id_usuario' => 1
         ]);
+        //GENERO
+        DB::table('opcion')->insert([
+            'id_opcion' => 5,
+            'valor' => '0',
+            'descripcion' => 'Indefinido',
+            'fk_id_filtro' => 2,
+            'fk_id_usuario' => 1
+        ]);
+        DB::table('opcion')->insert([
+            'id_opcion' => 6,
+            'valor' => '1',
+            'descripcion' => 'Masculino',
+            'fk_id_filtro' => 2,
+            'fk_id_usuario' => 1
+        ]);
+        DB::table('opcion')->insert([
+            'id_opcion' => 7,
+            'valor' => '2',
+            'descripcion' => 'Femenino',
+            'fk_id_filtro' => 2,
+            'fk_id_usuario' => 1
+        ]);
     }
 }
