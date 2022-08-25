@@ -4,7 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class filtro extends Model
+class filtro_opcion extends Model
 {
     //
     protected $connection = 'mysql';

@@ -73,7 +73,10 @@ Route::group(['middleware' => 'auth.jwt'], function () {
 
     //////////////// REPORTE ////////////////
 
-    Route::post('/reporte/generar','reporteController@generar');
+    Route::post('repote/generar/{id_dpto}/', [
+        'uses' =>'reporteController@generar',   
+        'as' => 'reporte.generar'
+    ]);
 
     //////////////// PDF-REPORTE ////////////////
 

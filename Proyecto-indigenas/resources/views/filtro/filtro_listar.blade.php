@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-md-15 mt" >
                 <div class="form_register">
-                  <form action="/reporte/generar" method="POST">
+                  <form action="{{ route('reporte.generar',$id_dpto) }}" method="POST">
                     @csrf
                           
                         <div class="header-center">FILTROS:</div>
@@ -18,7 +18,7 @@
 
                                 <strong>{{$filtro["nombre"]}}:</strong>
                                 <br>
-                                <select name="fk_id_tipo_documento" id="fk_id_tipo_documento" style="width:70%, align:center"  >
+                                <select name="$filtro['id_filtro']" id="$filtro['id_filtro']" style="width:70%, align:center"  >
                                         @foreach($filtro["opciones"] as $opcion)
                                             <option value="{{$opcion['id_opcion']}}">{{$opcion["descripcion"]}}</option> 
                                         @endforeach

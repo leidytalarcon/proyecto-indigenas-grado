@@ -8,6 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use App\Model\reporte;
+use App\Model\filtro_opcion;
 use App\user;
 
 class reporteController extends BaseController
@@ -15,12 +16,21 @@ class reporteController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function index()
+    public function generar(Request $request)
     {
+
+        $filtros = $request->all();
+
+        foreach ($filtros as $filtro => $valor) {
+            $filtro_opcion_ids = filtro_opcion::where($filtro, $valor)->get();
+        }
+        
+        dd($filtro_opcion_ids);
+        
         return view('reporte.reporte_listar');
 
     }
-   
+    
     public function listar(){
 
         $reporte =reporte::all();
