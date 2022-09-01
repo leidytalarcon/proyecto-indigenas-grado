@@ -4,10 +4,10 @@ Created on Sat Jul  9 08:55:41 2022
 
 @author: glori
 """
-from Personas import Personas
+from Service.ObtenerDatos import ObtenerDatos
 import numpy as np
 
-datos = Personas()
+datos = ObtenerDatos()
 personas = datos.obtener()
 
 print(personas.sexo)
@@ -106,9 +106,5 @@ pearson_coeficient = np.corrcoef(personas.hijos_viven_fueraColombia_Mujeres, per
 pearson_coeficient = np.corrcoef(personas.fecha_nacimiento_ultimoHijo, personas.alfabeta)
 pearson_coeficient = np.corrcoef(personas.mes_nacimiento_ultimoHijo, personas.alfabeta)
 pearson_coeficient = np.corrcoef(personas.anio_nacimiento_ultimo_hijo, personas.alfabeta)
-
-
-
-
 
 print(pearson_coeficient)
