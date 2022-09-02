@@ -71,7 +71,7 @@ class ObtenerDatos:
 
         for row in rows:
             
-            print(row)
+            print(row[0])
             
             self.personas.sexo.append(int(row[0]))
             self.personas.edad.append(int(row[1]))
@@ -120,7 +120,7 @@ class ObtenerDatos:
             self.personas.hijos_viven_fueraColombia_Mujeres.append(int(row[44]))
             self.personas.fecha_nacimiento_ultimoHijo.append(int(row[45]))
             self.personas.mes_nacimiento_ultimoHijo.append(int(row[46]))
-            self.personas.anio_nacimiento_ultimo_hijo.append(int(row[47]))
+            #self.personas.anio_nacimiento_ultimo_hijo.append(int(row[47]))
               
         return self.personas
             
