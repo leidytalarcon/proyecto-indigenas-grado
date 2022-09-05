@@ -1,8 +1,5 @@
-CREATE SCHEMA reporte;
+--CREATE SCHEMA reporte;
 GO
-
-
-
 
 CREATE TABLE [reporte].[FACTOR](
     [ID] INT IDENTITY (1,1) PRIMARY KEY NOT NULL,
