@@ -15,9 +15,9 @@ class ObtenerDatos:
         self.cursor = self.db.obtener().cursor()
         self.personas = Persona()
         
-    def obtener(self):
+    def obtener(self, consulta):
         
-        self.cursor.execute("SELECT TOP 1000 " +
+        self.cursor.execute("SELECT " +
                             "P_SEXO," +
                             "P_EDADR," +
                             "P_ALFABETA," +
@@ -66,7 +66,8 @@ class ObtenerDatos:
                             "PA_UHNV," +
                             "PA1_MES_UHNV," +
                             "PA2_ANO_UHNV " +
-                            " FROM PERSONAS WITH(NOLOCK) ")
+                            "FROM PERSONAS WITH(NOLOCK) " +
+                            "WHERE 0=0 " + consulta )
         
         rows = self.cursor.fetchall()
 

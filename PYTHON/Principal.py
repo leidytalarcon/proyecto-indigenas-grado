@@ -5,59 +5,40 @@ Created on Sat Jul  9 08:55:41 2022
 @author: glori
 """
 from Service.ObtenerDatos import ObtenerDatos
+from Service.ObtenerFiltros import ObtenerFiltros
 import numpy as np
 
 datos = ObtenerDatos()
-personas = datos.obtener()
+filtros = ObtenerFiltros()
 
-# print(personas.sexo)
-# print(personas.alfabeta)
-# print(personas.edad)
-# print(personas.region)
-# print(personas.departamento)
-# print(personas.municipio)
-# print(personas.cabecera_municipal)
-# print(personas.Codigo_Encuestas)
-# print(personas.Numero_orden_de_la_vivienda)
-# print(personas.numero_vivienda_hogar)
-# print(personas.numero_personas_hogar)
-# print(personas.parentesco_con_jefe_hogar)
-# print(personas.grupo_etnico)
-# print(personas.etnia_indigena)
-# print(personas.clan)
-# print(personas.vitsa)
-# print(personas.kumpia)
-# print(personas.habla_lengua_nativa)
-# print(personas.Entiende_lengua_nativa_de_su_pueblo)
-# print(personas.habla_otras_lengua_nativa)
-# print(personas.Numero_otras_lenguas_nativas)
-# print(personas.lugar_nacimiento)
-# print(personas.lugar_residencia_5_anos)
-# print(personas.lugar_residencia_1_anos)
-# print(personas.enfermo_ultimo_mes)
-# print(personas.Tratamiento_principal_problema_salud)
-# print(personas.atención_problema_salud)
-# print(personas.calidad_serivicio)
-# print(personas.dificultad_fisica)
-# print(personas.asiste_educacion)
-# print(personas.nivel_escolar_alcanzado)
-# print(personas.trabajo_semana_pasada)
-# print(personas.estado_civil)
-# print(personas.hijos)
-# print(personas.hijos_nacidos_vivos_total)
-# print(personas.hijos_nacidos_Hombres)
-# print(personas.hijos_nacidos_Mujeres)
-# print(personas.hijos_sobrevivientes)
-# print(personas.hijos_sobrevivientes_total)
-# print(personas.hijos_sobrevivientes_hombres)
-# print(personas.hijos_sobrevivientes_mujeres)
-# print(personas.hijos_viven_fuera_actualmente_de_colombia)
-# print(personas.hijos_viven_fuera_total)
-# print(personas.hijos_viven_fueraColombia_Hombres)
-# print(personas.hijos_viven_fueraColombia_Mujeres)
-# print(personas.fecha_nacimiento_ultimoHijo)
-# print(personas.mes_nacimiento_ultimoHijo)
-# print(personas.anio_nacimiento_ultimo_hijo)
+
+
+
+filtro_dpto = filtros.obtenerFiltro("DEPARTAMENTO")
+filtro_edad = filtros.obtenerFiltro("RANGO EDAD")
+filtro_genero = filtros.obtenerFiltro("GENERO")
+
+opciones_dpto = filtros.obtenerOpciones(filtro_dpto.id_filtro)
+opciones_edad = filtros.obtenerOpciones(filtro_edad.id_filtro)
+opciones_genero = filtros.obtenerOpciones(filtro_genero.id_filtro)
+
+id_reporte = 0
+for dpto in opciones_dpto:
+    consulta = dpto.statement
+    id_reporte += 1
+    id_compuesto_filtros = filtro_dpto.nombre + dpto.id
+    
+    for edad in opciones_edad:
+        consulta = consulta + " " + edad.statement
+        id_compuesto_filtros = id_compuesto_filtros + filtro_edad + edad.id
+        
+        for genero in opciones_genero:
+            consulta = consulta + " " + genero.statement
+            id_compuesto_filtros = id_compuesto_filtros + filtro_genero + genero.id
+            
+            personas = datos.obtener(consulta)
+            
+    
 
 pearson_coeficient = np.corrcoef(personas.sexo, personas.alfabeta)
 pearson_coeficient = np.corrcoef(personas.edad, personas.alfabeta)
@@ -106,5 +87,3 @@ pearson_coeficient = np.corrcoef(personas.hijos_viven_fueraColombia_Mujeres, per
 pearson_coeficient = np.corrcoef(personas.fecha_nacimiento_ultimoHijo, personas.alfabeta)
 pearson_coeficient = np.corrcoef(personas.mes_nacimiento_ultimoHijo, personas.alfabeta)
 pearson_coeficient = np.corrcoef(personas.anio_nacimiento_ultimo_hijo, personas.alfabeta)
-
-# print(pearson_coeficient)
