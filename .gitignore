@@ -26,3 +26,6 @@ Homestead.json
 Proyecto-indigenas/vendor
 PYTHON/__pycache__
 PYTHON/Util
+PYTHON/Service/__pycache__
+PYTHON2/PYTHON/__pycache__
+PYTHON/Model/__pycache__
