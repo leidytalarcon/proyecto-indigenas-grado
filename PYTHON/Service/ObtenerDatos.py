@@ -12,7 +12,8 @@ class ObtenerDatos:
 
     def __init__(self):
         self.db = Conexion()
-        self.cursor = self.db.obtener().cursor()
+        self.conexion = self.db.obtener()
+        self.cursor = self.conexion.cursor()
         self.personas = Persona()
         
     def obtener(self, consulta):

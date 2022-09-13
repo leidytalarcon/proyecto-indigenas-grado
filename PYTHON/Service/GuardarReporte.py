@@ -6,14 +6,14 @@ Created on Sat Jul  9 08:54:28 2022
 """
 
 from Util.Conexion import Conexion
-from Model.Persona import Persona
 from Model.Reporte import Reporte
 
-class ObtenerFiltros:
+class GuardarReporte:
 
     def __init__(self):
         self.db = Conexion()
-        self.cursor = self.db.obtener().cursor()
+        self.conexion = self.db.obtener()
+        self.cursor = self.conexion.cursor()
         
     def guardarReporte(self, nombreReporte, idReporte):
         
@@ -26,37 +26,28 @@ class ObtenerFiltros:
                             idReporte + "', " +
                             "CURRENT_TIMESTAMP)")
         
-        row = self.cursor.fetchone()
-
-        filtro = Filtro()
-        filtro.id_filtro = row.ID
-        filtro.nombre = row.NOMBRE
-              
-        return filtro
-            
-        self.cursor.close()
-        self.db.cerrar()
+        self.cursor.commit()
         
-    def guardarReporteFactor(self, personas):
+        idGenerado = self.cursor.fetchone()[0]
         
-        self.cursor.execute("SELECT " +
-                            "O.ID, " +
-                            "O.NOMBRE, " +
-                            "O.[STATEMENT] " +
-                            "FROM REPORTE.FILTRO_OPCION O WITH(NOLOCK) " +
-                            "WHERE O.ID_FILTRO = " + idFiltro)
+        return idGenerado
         
-        rows = self.cursor.fetchall()
-
-        opciones = []
-        for row in rows:
-            opcion = Opcion()
-            opcion.id = row.ID
-            opcion.nombre = row.NOMBRE
-            opcion.statement = row.STATEMENT
+    def guardarReporteFactor(self, idReporte, reporteFactor:Reporte):
+        
+        for attr, value in reporteFactor.__dict__.items():
+            print(attr, value)
+        
+            self.cursor.execute("""INSERT INTO [reporte].[REPORTE_FACTOR]
+               ([ID_FACTOR]
+               ,[ID_REPORTE]
+               ,[COEFICIENTE]
+               ,[FECHA_CREACION])
+               VALUES """ +
+               "(SELECT ID FROM reporte.FACTOR WHERE alias = '" + attr + "' " +
+               "," + idReporte +
+               "," + value.coeficiente +
+               ",CURRENT_TIMESTAMP)")
             
-            opciones.append(opcion)
-        return opciones
+            print(self.cursor.fetchone()[0])
+            self.cursor.commit()
             
-        self.cursor.close()
-        self.db.cerrar()

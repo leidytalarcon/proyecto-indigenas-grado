@@ -41,7 +41,7 @@ class ObtenerFiltros:
                             "O.NOMBRE, " +
                             "O.[STATEMENT] " +
                             "FROM REPORTE.FILTRO_OPCION O WITH(NOLOCK) " +
-                            "WHERE O.ID_FILTRO = " + idFiltro)
+                            "WHERE O.ID_FILTRO = " + str(idFiltro))
         
         rows = self.cursor.fetchall()
 

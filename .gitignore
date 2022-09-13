@@ -24,5 +24,5 @@ Homestead.json
 /.vagrant
 .phpunit.result.cache
 Proyecto-indigenas/vendor
-PYTHON/__pycache__/
-PYTHON/Util/
+PYTHON/__pycache__
+PYTHON/Util

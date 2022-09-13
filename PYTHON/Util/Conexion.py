@@ -12,8 +12,8 @@ class Conexion:
     def __init__(self):
         self.host = 'localhost'
         self.schema = 'PROYECTO_INDIGENAS'
-        self.user = 'PYTHON'
-        self.password = 'PYTHON'
+        self.user = 'sa'
+        self.password = '7Rogernikki.'
         self.conexion = 0
 
     def obtener(self):
