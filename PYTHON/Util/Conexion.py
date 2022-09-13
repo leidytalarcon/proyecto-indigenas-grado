@@ -13,7 +13,7 @@ class Conexion:
         self.host = 'localhost'
         self.schema = 'PROYECTO_INDIGENAS'
         self.user = 'sa'
-        self.password = '7Rogernikki.'
+        self.password = 'sa.'
         self.conexion = 0
 
     def obtener(self):
