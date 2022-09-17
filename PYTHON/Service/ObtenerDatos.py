@@ -71,10 +71,8 @@ class ObtenerDatos:
                             "WHERE 0=0 " + consulta )
         
         rows = self.cursor.fetchall()
-
+        
         for row in rows:
-            
-            print(row[0])
             
             self.personas.sexo.append(int(row.P_SEXO))
             self.personas.edad.append(int(row.P_EDADR))

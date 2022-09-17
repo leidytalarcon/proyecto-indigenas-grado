@@ -25,26 +25,30 @@ opciones_dpto = filtros.obtenerOpciones(filtro_dpto.id_filtro)
 opciones_edad = filtros.obtenerOpciones(filtro_edad.id_filtro)
 opciones_genero = filtros.obtenerOpciones(filtro_genero.id_filtro)
 
-serie_reporte = 0
+secuencia_reporte = 0
 for dpto in opciones_dpto:
-    consulta = dpto.statement
-    serie_reporte += 1
-    id_compuesto_filtros = filtro_dpto.nombre + str(dpto.id)
+    
+    secuencia_reporte += 1
     
     for edad in opciones_edad:
-        consulta = consulta + " " + edad.statement
-        id_compuesto_filtros = id_compuesto_filtros + filtro_edad.nombre + str(edad.id)
         
         for genero in opciones_genero:
-            consulta = consulta + " " + genero.statement
-            id_compuesto_filtros = id_compuesto_filtros + filtro_genero.nombre + str(genero.id)
             
-            print("Consulta: " + consulta)
+            consulta = dpto.statement + " " + edad.statement + " " + genero.statement
+            id_reporte = filtro_dpto.nombre + str(dpto.id) + filtro_edad.nombre + str(edad.id) + filtro_genero.nombre + str(genero.id)
+            
+            print("Procesando Filtros: " + consulta)
             personas = datos.obtener(consulta)
-            reporte = resumen.generarReporte(personas)
-            idGenerado = guardar.guardarReporte(id_compuesto_filtros, serie_reporte)
-            print("Reporte: " + str(idGenerado))
-            guardar.guardarReporteFactor(idGenerado, reporte)
+            
+            print("   Cantidad registros: " + str(len(personas.alfabeta)))
+            
+            if (len(personas.alfabeta) > 0):
+                
+                reporte = resumen.generarReporte(personas)
+                id_reporte_generado = guardar.guardarReporte(id_reporte, secuencia_reporte)
+                
+                print("   Id Reporte: " + str(id_reporte_generado))
+                guardar.guardarReporteFactor(id_reporte_generado, reporte)
             
             
     

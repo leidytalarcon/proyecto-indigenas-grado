@@ -21,33 +21,45 @@ class GuardarReporte:
                             "([NOMBRE], " +
                             "[DESCRIPCION], " +
                             "[FECHA_CREACION]) " +
+                            "OUTPUT INSERTED.ID " +
                             "VALUES " +
-                            "( '" + nombreReporte + "', '" + 
-                            idReporte + "', " +
-                            "CURRENT_TIMESTAMP)")
-        
-        self.cursor.commit()
+                            "( ?, ?, CURRENT_TIMESTAMP)",
+                            str(nombreReporte),
+                            str(idReporte))
         
         idGenerado = self.cursor.fetchone()[0]
+        
+        self.cursor.commit()
         
         return idGenerado
         
     def guardarReporteFactor(self, idReporte, reporteFactor:Reporte):
         
         for attr, value in reporteFactor.__dict__.items():
-            print(attr, value)
-        
-            self.cursor.execute("""INSERT INTO [reporte].[REPORTE_FACTOR]
-               ([ID_FACTOR]
-               ,[ID_REPORTE]
-               ,[COEFICIENTE]
-               ,[FECHA_CREACION])
-               VALUES """ +
-               "(SELECT ID FROM reporte.FACTOR WHERE alias = '" + attr + "' " +
-               "," + idReporte +
-               "," + value.coeficiente +
-               ",CURRENT_TIMESTAMP)")
             
-            print(self.cursor.fetchone()[0])
+            idFactor = self.obtenerFactor(attr)
+            
+            self.cursor.execute("INSERT INTO [reporte].[REPORTE_FACTOR] " +
+                       "([ID_FACTOR], " +
+                       "[ID_REPORTE], " +
+                       "[COEFICIENTE], " +
+                       "[FECHA_CREACION]) " +
+                       "VALUES " +
+                       "(?, ?, ?, CURRENT_TIMESTAMP)",
+                       str(idFactor),
+                       str(idReporte),
+                       str(value.coeficiente[0][1]))
+            
+            print("ReporteFactor: " + str(self.cursor.fetchone()[0]))
+            
             self.cursor.commit()
             
+    def obtenerFactor(self, aliasFactor):
+        
+        self.cursor.execute("SELECT ID " +
+                            "FROM REPORTE.FACTOR F WITH(NOLOCK) "+
+                            "WHERE F.alias = '" + aliasFactor + "'")
+        
+        row = self.cursor.fetchone()
+
+        return row.ID

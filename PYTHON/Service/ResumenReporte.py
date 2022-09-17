@@ -65,6 +65,7 @@ class ResumenReporte:
         reporte.mes_nacimiento_ultimoHijo.coeficiente = np.corrcoef(personas.mes_nacimiento_ultimoHijo, personas.alfabeta)
         reporte.anio_nacimiento_ultimo_hijo.coeficiente = np.corrcoef(personas.anio_nacimiento_ultimo_hijo, personas.alfabeta)
         
+        print("   Coeficiente ejemplo: " + str(reporte.sexo.coeficiente))
         return reporte
                 
                 
