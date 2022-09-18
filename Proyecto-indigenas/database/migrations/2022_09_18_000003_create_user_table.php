@@ -1,20 +1,22 @@
 <?php
 
+namespace Database\Migrations;
+
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsuarioTable extends Migration
+class CreateUserTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $tableName = 'usuario';
+    public $tableName = 'user';
 
     /**
      * Run the migrations.
-     * @table usuario
+     * @table user
      *
      * @return void
      */
@@ -26,8 +28,8 @@ class CreateUsuarioTable extends Migration
             $table->integer('documento')->nullable()->default(null);
             $table->string('nombre', 45)->nullable()->default(null);
             $table->integer('telefono')->nullable()->default(null);
-            $table->string('username', 45)->nullable()->default(null);
-            $table->string('contrasena', 45)->nullable()->default(null);
+            $table->string('email', 45)->nullable()->default(null);
+            $table->string('password', 64)->nullable()->default(null);
             $table->integer('fk_id_rol');
             $table->integer('fk_id_tipo_documento')->nullable();
 
