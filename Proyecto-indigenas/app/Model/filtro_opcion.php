@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class filtro_opcion extends Model
 {
     //
-    protected $connection = 'mysql';
+    protected $connection = 'sqlsrv';
 
     protected $table = 'filtro_opcion';
 

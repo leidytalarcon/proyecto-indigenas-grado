@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class factor extends Model
 {
     //
-    protected $connection = 'mysql';
+    protected $connection = 'sqlsrv';
 
     protected $table = 'factor';
 

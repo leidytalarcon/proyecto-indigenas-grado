@@ -10,7 +10,7 @@ class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
-    protected $connection = 'mysql';
+    protected $connection = 'sqlsrv';
 
     protected $table = 'user';
 

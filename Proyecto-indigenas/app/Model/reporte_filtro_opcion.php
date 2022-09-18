@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class reporte_filtro_opcion extends Model
 {
     //
-    protected $connection = 'mysql';
+    protected $connection = 'sqlsrv';
 
     protected $table = 'reporte_filtro_opcion';
 
