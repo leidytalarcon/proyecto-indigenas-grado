@@ -8,14 +8,17 @@ from Service.ObtenerDatos import ObtenerDatos
 from Service.ObtenerFiltros import ObtenerFiltros
 from Service.ResumenReporte import ResumenReporte
 from Service.GuardarReporte import GuardarReporte
+from Util.LimpiarReporte import LimpiarReporte
 from Model.Reporte import Reporte
 
+limpiar = LimpiarReporte()
 datos = ObtenerDatos()
 filtros = ObtenerFiltros()
 resumen = ResumenReporte()
 reporte = Reporte()
 guardar = GuardarReporte()
 
+limpiar.truncarReportes()
 
 filtro_dpto = filtros.obtenerFiltro("DEPARTAMENTO")
 filtro_edad = filtros.obtenerFiltro("RANGO EDAD")

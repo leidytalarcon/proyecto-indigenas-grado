@@ -17,6 +17,7 @@ class ResumenReporte:
     def generarReporte(self, personas):
         reporte = Reporte()
         
+        
         reporte.sexo.coeficiente = np.corrcoef(personas.sexo, personas.alfabeta)
         reporte.edad.coeficiente = np.corrcoef(personas.edad, personas.alfabeta)
         reporte.region.coeficiente = np.corrcoef(personas.region, personas.alfabeta)

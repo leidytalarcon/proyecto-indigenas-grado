@@ -68,7 +68,7 @@ class ObtenerDatos:
                             "PA1_MES_UHNV," +
                             "PA2_ANO_UHNV " +
                             "FROM PERSONAS WITH(NOLOCK) " +
-                            "WHERE 0=0 " + consulta )
+                            "WHERE P_ALFABETA != 0 " + consulta )
         
         rows = self.cursor.fetchall()
         

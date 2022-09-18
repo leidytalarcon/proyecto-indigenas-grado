@@ -7,6 +7,7 @@ Created on Sat Jul  9 08:54:28 2022
 
 from Util.Conexion import Conexion
 from Model.Reporte import Reporte
+import math
 
 class GuardarReporte:
 
@@ -38,6 +39,9 @@ class GuardarReporte:
         for attr, value in reporteFactor.__dict__.items():
             
             idFactor = self.obtenerFactor(attr)
+            if(math.isnan(value.coeficiente[0][1])):
+                print("FALLO REPORTE : " + str(idReporte) + " CAMPO: " + attr)
+                value.coeficiente[0][1] = 1
             
             self.cursor.execute("INSERT INTO [reporte].[REPORTE_FACTOR] " +
                        "([ID_FACTOR], " +
@@ -49,8 +53,6 @@ class GuardarReporte:
                        str(idFactor),
                        str(idReporte),
                        str(value.coeficiente[0][1]))
-            
-            print("ReporteFactor: " + str(self.cursor.fetchone()[0]))
             
             self.cursor.commit()
             
