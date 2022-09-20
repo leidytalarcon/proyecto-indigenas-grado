@@ -42,8 +42,7 @@ class GuardarReporte:
             if(math.isnan(value.coeficiente[0][1])):
                 print("FALLO REPORTE : " + str(idReporte) + " CAMPO: " + attr)
                 value.coeficiente[0][1] = 1
-            if False == (str.isnumeric(value.coeficiente[0][1])):
-                print("ERROR FATAL: "+ value.coeficiente[0][1])
+          
             
             self.cursor.execute("INSERT INTO [reporte].[REPORTE_FACTOR] " +
                        "([ID_FACTOR], " +
@@ -54,7 +53,7 @@ class GuardarReporte:
                        "(?, ?, ?, CURRENT_TIMESTAMP)",
                        str(idFactor),
                        str(idReporte),
-                       str(value.coeficiente[0][1]))
+                       format(value.coeficiente[0][1], '.3f'))
             
             self.cursor.commit()
             
