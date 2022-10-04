@@ -23,7 +23,6 @@ class CreateFactorTable extends Migration
     public function up()
     {
         Schema::create($this->tableName, function (Blueprint $table) {
-            $table->engine = 'InnoDB';
             $table->increments('id_factor');
             $table->string('nombre', 45)->nullable();
             $table->string('descripcion')->nullable();
