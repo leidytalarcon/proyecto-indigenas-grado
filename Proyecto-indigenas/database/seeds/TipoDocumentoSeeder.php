@@ -13,7 +13,6 @@ class TipoDocumentoSeeder extends Seeder
     {
         //
         DB::table('tipo_documento')->insert([
-            'id_tipo_documento' => 1,
             'nombre' => 'Cedula ciudadania'
         ]);
     }
