@@ -10,21 +10,23 @@ from Service.ResumenReporte import ResumenReporte
 from Service.GuardarReporte import GuardarReporte
 from Util.LimpiarReporte import LimpiarReporte
 from Model.Reporte import Reporte
+from Model.Opcion import Opcion
 
-limpiar = LimpiarReporte()
 datos = ObtenerDatos()
 filtros = ObtenerFiltros()
 resumen = ResumenReporte()
 reporte = Reporte()
 guardar = GuardarReporte()
+opcion = Opcion()
 
-limpiar.truncarReportes()
 
 filtro_dpto = filtros.obtenerFiltro("DEPARTAMENTO")
 filtro_edad = filtros.obtenerFiltro("RANGO EDAD")
 filtro_genero = filtros.obtenerFiltro("GENERO")
 
-opciones_dpto = filtros.obtenerOpciones(filtro_dpto.id_filtro)
+opcion.id = 32
+opcion.statement ="AND U_DPTO = 18"
+opciones_dpto = [opcion]
 opciones_edad = filtros.obtenerOpciones(filtro_edad.id_filtro)
 opciones_genero = filtros.obtenerOpciones(filtro_genero.id_filtro)
 
