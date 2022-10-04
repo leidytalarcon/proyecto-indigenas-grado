@@ -13,23 +13,16 @@ class reporte extends Model
 
     public $timestamps = false;
 
-    protected $primaryKey = 'id_reporte';
+    protected $primaryKey = 'id';
 
     protected $fillable = [
    
-        'respuesta',
-        'fecha_creacion',
-        'fk_id_usuario'
+        'nombre',
+        'descripcion',
+        'fecha_creacion '
     ];
+    
 
-    public function usuario()
-    {
-        return $this->belongsTo('App\Model\usuario', 'fk_id_usuario', 'id_usuario');
-    }
-
-    public function reportes_factor()
-    {
-        return $this->hasMany('App\Model\reporte_factor','fk_id_reporte','id_reporte');
-    }
+  
 
 }

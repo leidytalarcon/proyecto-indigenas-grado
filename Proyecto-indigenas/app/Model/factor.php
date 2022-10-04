@@ -13,22 +13,11 @@ class factor extends Model
 
     public $timestamps = false;
 
-    protected $primaryKey = 'id_factor';
+    protected $primaryKey = 'id';
 
     protected $fillable = [   
-        'nombre',
-        'descripcion',
-        'fecha_creacion',
-        'fk_id_usuario'
+        'nombre_columna',
+        'alias'
     ];
-
-    public function usuario()
-    {
-        return $this->belongsTo('App\Model\usuario', 'fk_id_usuario', 'id_usuario');
-    }
-
-    public function reportes_factor()
-    {
-        return $this->hasMany('App\Model\reporte_factor','fk_id_factor','id_factor');
-    }
+ 
 }

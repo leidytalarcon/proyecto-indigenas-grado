@@ -13,13 +13,13 @@ class reporte_factor extends Model
 
     public $timestamps = false;
 
-    protected $primaryKey = 'id_reporte_factor';
+    protected $primaryKey = 'id';
 
     protected $fillable = [
-
-        'fk_id_reporte',
-        'fk_id_factor',
-        'coeficiente'
+        'id_factor',
+        'id_reporte',
+        'coeficiente',
+        'fecha_creacion'
     ];
 
     public function reporte()

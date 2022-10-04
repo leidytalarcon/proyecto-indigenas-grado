@@ -10,9 +10,9 @@ class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
-    protected $connection = 'mysql';
+    protected $connection = 'sqlsrv';
 
-    protected $table = 'users';
+    protected $table = 'user';
 
     public $timestamps = false;
 
@@ -25,12 +25,14 @@ class User extends Authenticatable implements JWTSubject
      */
     protected $fillable = [
         'documento',
-        'nombre',
+        'nombres',
+        'apellidos',
         'telefono',
         'email',
         'password',
-        'fk_id_tipo_documento',
-        'fk_id_rol'
+        'fk_id_rol',
+        'fk_id_tipo_documento'
+        
     ];
  
     /**
