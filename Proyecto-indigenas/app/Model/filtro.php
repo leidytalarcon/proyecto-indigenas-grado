@@ -9,7 +9,7 @@ class filtro extends Model
     //
     protected $connection = 'sqlsrv';
 
-    protected $table = 'filtro';
+    protected $table = 'reporte.filtro';
 
     public $timestamps = false;
 

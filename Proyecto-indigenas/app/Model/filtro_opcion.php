@@ -9,7 +9,7 @@ class filtro_opcion extends Model
     //
     protected $connection = 'sqlsrv';
 
-    protected $table = 'filtro_opcion';
+    protected $table = 'reporte.filtro_opcion';
 
     public $timestamps = false;
 

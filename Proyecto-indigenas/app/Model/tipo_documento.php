@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class tipo_documento extends Model
 {
     //
-    protected $connection = 'sqlsrv';
+    protected $connection = 'mysql';
 
     protected $table = 'tipo_documento';
 

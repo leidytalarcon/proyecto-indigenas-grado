@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class rol extends Model
 {
     //
-    protected $connection = 'sqlsrv';
+    protected $connection = 'mysql';
 
     protected $table = 'rol';
 

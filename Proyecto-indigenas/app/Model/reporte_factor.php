@@ -9,7 +9,7 @@ class reporte_factor extends Model
     //
     protected $connection = 'sqlsrv';
 
-    protected $table = 'reporte_factor';
+    protected $table = 'reporte.reporte_factor';
 
     public $timestamps = false;
 

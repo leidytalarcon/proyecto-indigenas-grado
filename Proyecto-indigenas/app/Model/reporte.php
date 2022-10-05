@@ -9,7 +9,7 @@ class reporte extends Model
     //
     protected $connection = 'sqlsrv';
 
-    protected $table = 'reporte';
+    protected $table = 'reporte.reporte';
 
     public $timestamps = false;
 
