@@ -19,9 +19,12 @@ class filtro extends Model
         'nombre',
         'descripcion',
         'fecha_creacion'
-
-      
     ];
+
+    public function opciones()
+    {
+        return $this->hasMany('App\Model\filtro_opcion','id_filtro','id');
+    }
 
    
   

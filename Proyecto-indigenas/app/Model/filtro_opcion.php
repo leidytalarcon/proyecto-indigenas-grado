@@ -26,7 +26,7 @@ class filtro_opcion extends Model
 
     public function filtro()
     {
-        return $this->belongsTo('App\Model\filtro', 'fk_id_filtro', 'id_filtro');
+        return $this->belongsTo('App\Model\filtro', 'id', 'id_filtro');
     }
 
    
