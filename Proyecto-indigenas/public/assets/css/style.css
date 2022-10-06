@@ -38,7 +38,7 @@ h1, h2, h3, h4, h5, h6 {
   bottom: 0;
   z-index: 9999;
   overflow: hidden;
-  background: #37517e;
+  background: #0d7445;
 }
 
 #preloader:before {
@@ -205,7 +205,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 14px;
   text-transform: none;
   font-weight: 500;
-  color: #0c3c53;
+  color: #0d7445;
 }
 .navbar .dropdown ul a i {
   font-size: 12px;
@@ -294,7 +294,7 @@ h1, h2, h3, h4, h5, h6 {
 .navbar-mobile a, .navbar-mobile a:focus {
   padding: 10px 20px;
   font-size: 15px;
-  color: #37517e;
+color: #0d7445;
 }
 .navbar-mobile a:hover, .navbar-mobile .active, .navbar-mobile li:hover > a {
   color: #47b2e4;
@@ -336,14 +336,14 @@ h1, h2, h3, h4, h5, h6 {
 #hero {
   width: 100%;
   height: 80vh;
-  background: #37517e;
+  background: #ecf3ee;
 }
 
 
 #hero2 {
   width: 100%;
   height: 20vh;
-  background:#0d7445 ;
+  background:#056b27 ;
 }
 
 #hero .container {
@@ -354,10 +354,10 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 48px;
   font-weight: 700;
   line-height: 56px;
-  color: #fff;
+  color: rgb(24, 139, 72);
 }
 #hero h2 {
-  color: #fff;
+  color: rgb(32, 112, 32);
   margin-bottom: 50px;
   font-size: 24px;
 }
@@ -423,7 +423,7 @@ h1, h2, h3, h4, h5, h6 {
   #hero h2 {
     font-size: 18px;
     line-height: 24px;
-    color: #fff;
+    color: rgb(10, 119, 19);
     margin-bottom: 30px;
   }
   #hero .hero-img img {
