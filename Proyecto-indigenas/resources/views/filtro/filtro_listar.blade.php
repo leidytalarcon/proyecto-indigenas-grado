@@ -16,9 +16,9 @@
                             @foreach($filtros as $filtro)
                             <div class="form-group col-md-6">
 
-                                <strong>{{$filtro["nombre"]}}:</strong>
+                                <strong>{{$filtro["NOMBRE"]}}:</strong>
                                 <br>
-                                <select name="$filtro['id']" id="$filtro['id']" style="width:70%, align:center"  >
+                                <select name="{{$filtro['ID']}}" id="{{$filtro['ID']}}" style="width:70%, align:center"  >
                                         @foreach($filtro["opciones"] as $opcion)
                                             <option value="{{$opcion['ID']}}">{{$opcion["NOMBRE"]}}</option> 
                                         @endforeach

@@ -8,7 +8,9 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use App\Model\reporte;
+use App\Model\reporte_factor;
 use App\Model\filtro_opcion;
+use App\Model\filtro;
 use App\user;
 
 class reporteController extends BaseController
@@ -19,13 +21,24 @@ class reporteController extends BaseController
     public function generar(Request $request)
     {
 
-        $filtros = $request->all();
-
-        foreach ($filtros as $filtro => $valor) {
-            $filtro_opcion_ids = filtro_opcion::where($filtro, $valor)->get();
-        }
         
-        dd($filtro_opcion_ids);
+        $selecciones = $request->except('_token');
+
+        krsort($selecciones);
+
+        $reporteId = '';
+
+        foreach ($selecciones as $filtroId => $opcionId) {
+            
+            $filtro = filtro::where('ID', $filtroId)->first();
+      
+            $reporteId = $reporteId . $filtro['NOMBRE'] . $opcionId;
+            
+        }
+
+        $report = reporte::where('NOMBRE', $reporteId)->first();
+        $factores = reporte_factor::where('ID_REPORTE', $report['ID']);
+        dd($factores);
         
         return view('reporte.reporte_listar');
 

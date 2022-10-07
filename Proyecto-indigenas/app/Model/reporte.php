@@ -13,13 +13,13 @@ class reporte extends Model
 
     public $timestamps = false;
 
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'ID';
 
     protected $fillable = [
    
-        'nombre',
-        'descripcion',
-        'fecha_creacion '
+        'NOMBRE',
+        'DESCRIPCION',
+        'FECHA_CREACION '
     ];
     
 
