@@ -13,17 +13,17 @@ class filtro extends Model
 
     public $timestamps = false;
 
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'ID';
 
     protected $fillable = [
-        'nombre',
-        'descripcion',
-        'fecha_creacion'
+        'NOMBRE',
+        'DESCRIPCION',
+        'FECHA_CREACION'
     ];
 
     public function opciones()
     {
-        return $this->hasMany('App\Model\filtro_opcion','id_filtro','id');
+        return $this->hasMany('App\Model\filtro_opcion','ID_FILTRO','ID');
     }
 
    

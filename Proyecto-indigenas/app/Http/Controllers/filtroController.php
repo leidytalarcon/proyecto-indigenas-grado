@@ -8,6 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use App\Model\filtro;
+use App\Model\filtro_opcion;
 use App\user;
 
 class filtroController extends BaseController
@@ -29,6 +30,12 @@ class filtroController extends BaseController
    
     public function listar($id_dpto){
         $filtros =filtro::all();
+        
+ 
+        foreach ($filtros as $filtro) {
+            $filtro->opciones = filtro_opcion::where('id_filtro', $filtro->ID)->get();
+        }
+
         return view('filtro.filtro_listar', compact('filtros','id_dpto'));
     }
 

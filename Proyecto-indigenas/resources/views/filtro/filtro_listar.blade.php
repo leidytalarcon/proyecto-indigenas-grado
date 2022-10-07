@@ -20,7 +20,7 @@
                                 <br>
                                 <select name="$filtro['id']" id="$filtro['id']" style="width:70%, align:center"  >
                                         @foreach($filtro["opciones"] as $opcion)
-                                            <option value="{{$opcion['id_opcion']}}">{{$opcion["descripcion"]}}</option> 
+                                            <option value="{{$opcion['ID']}}">{{$opcion["NOMBRE"]}}</option> 
                                         @endforeach
                                 </select>
                                 </div>
