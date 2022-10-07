@@ -343,7 +343,7 @@ color: #0d7445;
 #hero2 {
   width: 100%;
   height: 20vh;
-  background:#eaf3ed ;
+  background:#0d7445 ;
 }
 #hero h {
   margin: 0 0 10px 0;
@@ -361,7 +361,7 @@ color: #0d7445;
   font-size: 48px;
   font-weight: 700;
   line-height: 56px;
-  color: rgb(24, 139, 72);
+  color: #056b27;
 }
 #hero h2 {
   color: rgb(32, 112, 32);
@@ -379,7 +379,7 @@ color: #0d7445;
   transition: 0.5s;
   margin: 10px 0 0 0;
   color: #fff;
-  background: #47b2e4;
+  background: #8bfcda;
 }
 #hero .btn-get-started:hover {
   background: #209dd8;
