@@ -343,7 +343,14 @@ color: #0d7445;
 #hero2 {
   width: 100%;
   height: 20vh;
-  background:#056b27 ;
+  background:#eaf3ed ;
+}
+#hero h {
+  margin: 0 0 10px 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  color: rgb(24, 139, 72);
 }
 
 #hero .container {
