@@ -13,11 +13,11 @@ class factor extends Model
 
     public $timestamps = false;
 
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'ID';
 
     protected $fillable = [   
-        'nombre_columna',
-        'alias'
+        'NOMBRE_COLUMNA',
+        'ALIAS'
     ];
  
 }

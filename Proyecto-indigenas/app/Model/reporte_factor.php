@@ -13,13 +13,13 @@ class reporte_factor extends Model
 
     public $timestamps = false;
 
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'ID';
 
     protected $fillable = [
-        'id_factor',
-        'id_reporte',
-        'coeficiente',
-        'fecha_creacion'
+        'ID_FACTOR',
+        'ID_REPORTE',
+        'COEFICIENTE',
+        'FECHA_CREACION'
     ];
 
     public function reporte()
@@ -27,9 +27,9 @@ class reporte_factor extends Model
         return $this->belongsTo('App\Model\reporte', 'fk_id_reporte', 'id_reporte');
     }
 
-    public function filtro()
+    public function factor()
     {
-        return $this->belongsTo('App\Model\factor', 'fk_id_factor', 'id_factor');
+        return $this->belongsTo('App\Model\factor', 'ID_FACTOR', 'ID');
     }
   
 }
