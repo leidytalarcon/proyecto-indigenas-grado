@@ -6,7 +6,13 @@
         <div class="row justify-content-center">
             <div class="col-md-15 mt" >
                 <div class="form_register">
-                  <form action="{{ route('descargarPDF') }}" method="GET">
+
+                    @if(is_null($report))(
+                        <form action="{{ route('descargarPDF',0) }}" method="GET">
+                    @else
+                        <form action="{{ route('descargarPDF',$report->ID) }}" method="GET">
+                    @endif
+                  
                     @csrf
                           
                         <div class="header-center">FILTROS:</div>
@@ -28,10 +34,10 @@
                                     <tbody>
                                         @foreach($factores as $factor)
                                             <tr>
-                                                <td> {{$factor['ID_FACTOR']}} </td>
+                                                <td> {{$factor['ALIAS']}} </td>
                                                 <td> {{$factor['COEFICIENTE']}} </td>
                                             </tr>
-                                         @endforeach !>
+                                         @endforeach
                                     </tbody>
                                 </table>
                                 
@@ -39,7 +45,7 @@
                             @endempty
 
                          <div class="row form-group">
-                                <button type="submit" class="btn-success col-md-9 offset-2">GUARDAR</button>
+                                <button type="submit" class="btn-success col-md-9 offset-2">GENERAR PDF</button>
                             </div>
                         </div>
                            

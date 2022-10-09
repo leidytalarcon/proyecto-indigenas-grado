@@ -38,14 +38,15 @@ class reporteController extends BaseController
 
         $report = reporte::where('NOMBRE', $reporteId)->first();
 
-
         if(!$report){
             $factores = [];
         }else{
-            $factores = reporte_factor::where('ID_REPORTE', $report['ID']);
+            $factores = reporte_factor::where('ID_REPORTE', $report['ID'])
+            ->join('reporte.factor', 'reporte_factor.ID_FACTOR', '=', 'reporte.factor.ID')
+            ->get();
         }
-        
-        return view('reporte.reporte_listar', compact('factores'));
+
+        return view('reporte.reporte_listar', compact('factores','report'));
 
     }
     
