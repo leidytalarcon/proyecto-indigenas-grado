@@ -54,7 +54,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+article, aside, figcaption, figure, footer, header, hgroup, nav, section {
   display: block;
 }
 
@@ -161,7 +161,7 @@ sup {
 a {
   color: #fff;
   text-decoration: none;
-  background-color: transparent;
+  background-color: visible;
 }
 
 a:hover {
@@ -3202,9 +3202,9 @@ input[type="button"].btn-block {
 }
 
 .dropdown-item.disabled, .dropdown-item:disabled {
-  color: #858796;
+  color: #37a11d;
   pointer-events: none;
-  background-color: transparent;
+  background-color: visible;
 }
 
 .dropdown-menu.show {
@@ -3216,7 +3216,7 @@ input[type="button"].btn-block {
   padding: 0.5rem 1.5rem;
   margin-bottom: 0;
   font-size: 0.875rem;
-  color: #858796;
+  color: #076338;
   white-space: nowrap;
 }
 
@@ -3557,7 +3557,7 @@ input[type="button"].btn-block {
 }
 
 .custom-control-input:checked ~ .custom-control-label::before {
-  color: #fff;
+  color: rgb(224, 107, 107);
   border-color: #4e73df;
   background-color: #4e73df;
 }
@@ -3567,7 +3567,7 @@ input[type="button"].btn-block {
 }
 
 .custom-control-input:focus:not(:checked) ~ .custom-control-label::before {
-  border-color: #bac8f3;
+  border-color: #cfd3e0;
 }
 
 .custom-control-input:not(:disabled):active ~ .custom-control-label::before {
@@ -4519,7 +4519,7 @@ input[type="button"].btn-block {
 .card-header {
   padding: 0.75rem 1.25rem;
   margin-bottom: 0;
-  background-color: #f8f9fc;
+  background-color: #c2e4d1;
   border-bottom: 1px solid #e3e6f0;
 }
 
@@ -4529,7 +4529,7 @@ input[type="button"].btn-block {
 
 .card-footer {
   padding: 0.75rem 1.25rem;
-  background-color: #f8f9fc;
+  background-color: #334169;
   border-top: 1px solid #e3e6f0;
 }
 
@@ -4689,7 +4689,7 @@ input[type="button"].btn-block {
   padding: 0.75rem 1rem;
   margin-bottom: 1rem;
   list-style: none;
-  background-color: #eaecf4;
+  background-color: #3952b8;
   border-radius: 0.35rem;
 }
 
@@ -4704,7 +4704,7 @@ input[type="button"].btn-block {
 .breadcrumb-item + .breadcrumb-item::before {
   display: inline-block;
   padding-right: 0.5rem;
-  color: #858796;
+  color: #4554c5;
   content: "/";
 }
 
@@ -4774,7 +4774,7 @@ input[type="button"].btn-block {
   color: #858796;
   pointer-events: none;
   cursor: auto;
-  background-color: #fff;
+  background-color: blue;
   border-color: #dddfeb;
 }
 

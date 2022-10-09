@@ -157,7 +157,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 10px 0 10px 30px;
   font-size: 15px;
   font-weight: 500;
-  color: #fff;
+  color: rgb(8, 110, 34);
   white-space: nowrap;
   transition: 0.3s;
 }
@@ -342,8 +342,8 @@ color: #0d7445;
 
 #hero2 {
   width: 100%;
-  height: 20vh;
-  background:#0d7445 ;
+  height: 1vh;
+  background:#f1f7f4 ;
 }
 #hero h {
   margin: 0 0 10px 0;
@@ -379,7 +379,7 @@ color: #0d7445;
   transition: 0.5s;
   margin: 10px 0 0 0;
   color: #fff;
-  background: #8bfcda;
+  background: #1bc491;
 }
 #hero .btn-get-started:hover {
   background: #209dd8;
@@ -390,12 +390,12 @@ color: #0d7445;
   align-items: center;
   transition: 0.5s;
   margin: 10px 0 0 25px;
-  color: #fff;
+  color: rgb(6, 116, 79);
   line-height: 1;
 }
 #hero .btn-watch-video i {
   line-height: 0;
-  color: #fff;
+  color: rgb(14, 85, 35);
   font-size: 32px;
   transition: 0.3s;
   margin-right: 8px;

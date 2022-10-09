@@ -27,14 +27,24 @@ class reporteController extends BaseController
         krsort($selecciones);
 
         $reporteId = '';
+        $factorOrder = ['', '', ''];
 
         foreach ($selecciones as $filtroId => $opcionId) {
             
             $filtro = filtro::where('ID', $filtroId)->first();
       
-            $reporteId = $reporteId . $filtro['NOMBRE'] . $opcionId;
+            if($filtro['NOMBRE'] == 'DEPARTAMENTO'){
+                $factorOrder[0] = $filtro['NOMBRE'] . $opcionId;
+            }
+            if($filtro['NOMBRE'] == 'RANGO EDAD'){
+                $factorOrder[1] = $filtro['NOMBRE'] . $opcionId;
+            }
+            if($filtro['NOMBRE'] == 'GENERO'){
+                $factorOrder[2] = $filtro['NOMBRE'] . $opcionId;
+            }
             
         }
+        $reporteId = $factorOrder[0] . $factorOrder[1] . $factorOrder[2];
 
         $report = reporte::where('NOMBRE', $reporteId)->first();
 
