@@ -12,6 +12,7 @@ use App\Model\reporte_factor;
 use App\Model\filtro_opcion;
 use App\Model\filtro;
 use App\user;
+use Illuminate\Support\Facades\DB;
 
 class reporteController extends BaseController
 
@@ -60,6 +61,7 @@ class reporteController extends BaseController
         }else{
             $factores = reporte_factor::where('ID_REPORTE', $report['ID'])
             ->join('reporte.factor', 'reporte_factor.ID_FACTOR', '=', 'reporte.factor.ID')
+            ->orderBy(DB::raw('ABS(COEFICIENTE)'), 'DESC')
             ->get();
         }
 
@@ -78,7 +80,7 @@ class reporteController extends BaseController
             $ejeX = $ejeX + 150;
             
             $size = abs($factor['COEFICIENTE']);
-            if($size > 900){
+            if($size > 9){
                 $size = 1;
             }
 
