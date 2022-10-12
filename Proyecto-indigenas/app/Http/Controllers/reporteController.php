@@ -63,35 +63,41 @@ class reporteController extends BaseController
             ->get();
         }
 
-        return response()->json($factores, 200);
+        $data = $this->generarGrafica($factores);
+
+        return response()->json($data, 200);
     }
 
-    public function nuevo(){
-        $usuarios = user::all();
-        return view('reporte.reporte', compact('usuarios'));
+
+    private function generarGrafica($factores){
+        $dataList = array();
+        $ejeX = 0;
+        $ejeY = 0;
+        foreach($factores as $factor){
+
+            $ejeX = $ejeX + 150;
+            
+            $size = abs($factor['COEFICIENTE']);
+            if($size > 900){
+                $size = 1;
+            }
+
+            $data['source'] = $factor['ALIAS']; 
+            $data['x'] = $ejeX;
+            $data['y'] = $ejeY;
+            $data['val'] = $size*300;
+            $data['color'] = '#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
+
+            array_push($dataList, $data);
+
+            if($ejeX >= 2000){
+                $ejeX = 0;
+                $ejeY = $ejeY + 150;
+            }
+
+        }
+
+        return $dataList;
     }
 
-    public function guardar(Request $request){
-
-        comunidad::create([
-          
-            'respuesta' =>$request['respuesta'],
-            'fecha_creacion' =>$request['fecha_creacion'],
-            'fk_id_usuario'=>$request['fk_id_usuario']
-        ]);
-
-        return redirect()->route('reporte.index');
-    }
-
-    public function actualizar(Request $request,$id_reporte){
-        $reporte = reporte::find($id_reporte);
-        $reporte['respuesta'] =$request['respuesta'];
-        $reporte['fecha_creacion'] = $request['fecha_creacion'];
-       
-        $reporte->update();
-        
-        return redirect()->route('reporte.index');
-
-        
-    }
 }
