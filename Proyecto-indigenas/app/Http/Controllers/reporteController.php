@@ -21,7 +21,6 @@ class reporteController extends BaseController
     public function generar(Request $request)
     {
 
-        
         $selecciones = $request->except('_token');
 
         krsort($selecciones);
@@ -46,7 +45,15 @@ class reporteController extends BaseController
         }
         $reporteId = $factorOrder[0] . $factorOrder[1] . $factorOrder[2];
 
-        $report = reporte::where('NOMBRE', $reporteId)->first();
+        return view('reporte.reporte_graficar', compact('reporteId'));
+
+    }
+    
+    public function datosGrafica(Request $request){
+
+        $reporteNombre = $request->reporteNombre;
+
+        $report = reporte::where('NOMBRE', $reporteNombre)->first();
 
         if(!$report){
             $factores = [];
@@ -56,14 +63,7 @@ class reporteController extends BaseController
             ->get();
         }
 
-        return view('reporte.reporte_listar', compact('factores','report'));
-
-    }
-    
-    public function listar(){
-
-        $reporte =reporte::all();
-        return response()->json($reporte, 200);
+        return response()->json($factores, 200);
     }
 
     public function nuevo(){
