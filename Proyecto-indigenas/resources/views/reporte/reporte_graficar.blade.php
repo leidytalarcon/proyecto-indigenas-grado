@@ -8,25 +8,13 @@
 
 		
 </head>
-
-  
-  
-
-	<script type="text/javascript">
-
-    // Step 1
-    
-
-
-
-	</script>
   
 <div class="container mt-10 justify-content-center">
         <div class="row justify-content-center">
             <div class="col-md-15 mt" >
                 <div class="form_register">
                     
-                    <form action="{{ route('descargarPDF',0) }}" method="GET">
+                    <form action="{{ route('descargarPDF',$reporteId) }}" method="GET">
                     
                     @csrf
                         
@@ -35,7 +23,7 @@
                         <h2>Nivel de influencia de los índices de analfabetismo.</h2>
                         <div class="row">
                         
-                            <svg width="4000" height="4000"></svg> <!--Step 2-->
+                            <svg width="1000" height="1000"></svg> <!--Step 2-->
 
                          <div class="row form-group">
                                 <button type="submit" class="btn-success col-md-9 offset-2">GENERAR PDF</button>
@@ -68,8 +56,8 @@
 
                 // Step 3
                 var svg = d3.select("svg")
-                        .attr("width", 4000)
-                        .attr("height", 4000);
+                        .attr("width", 1000)
+                        .attr("height", 1000);
 
                 // Step 4
                 svg.selectAll("circle")
@@ -88,8 +76,8 @@
                 svg.selectAll("text")
                 .data(data).enter()
                 .append("text")
-                .attr("x", function(d) {return d.x+(Math.sqrt(d.val)/Math.PI)})
-                .attr("y", function(d) {return d.y+4})
+                .attr("x", function(d) {return d.x-((Math.sqrt(d.val)/Math.PI))*2})
+                .attr("y", function(d) {return d.y-(Math.sqrt(d.val)/Math.PI)})
                 .text(function(d) {return d.source})
                 .style("font-family", "arial")
                 .style("font-size", "12px")
