@@ -24,11 +24,13 @@ filtro_dpto = filtros.obtenerFiltro("DEPARTAMENTO")
 filtro_edad = filtros.obtenerFiltro("RANGO EDAD")
 filtro_genero = filtros.obtenerFiltro("GENERO")
 
-opcion.id = 34
-opcion.statement ="AND U_DPTO = 20"
+opcion.id = 35
+opcion.statement ="AND U_DPTO = 23"
 opciones_dpto = [opcion]
 opciones_edad = filtros.obtenerOpciones(filtro_edad.id_filtro)
 opciones_genero = filtros.obtenerOpciones(filtro_genero.id_filtro)
+
+filtros.cerrarConexion()
 
 secuencia_reporte = 0
 for dpto in opciones_dpto:

@@ -41,7 +41,10 @@ class GuardarReporte:
             idFactor = self.obtenerFactor(attr)
             if(math.isnan(value.coeficiente[0][1])):
                 print("FALLO REPORTE : " + str(idReporte) + " CAMPO: " + attr)
-                value.coeficiente[0][1] = 1
+                if(math.isnan(value.coeficiente[1][1])):
+                    value.coeficiente[0][1] = 1
+                else: 
+                    value.coeficiente[0][1] = value.coeficiente[1][1]
           
             
             self.cursor.execute("INSERT INTO [reporte].[REPORTE_FACTOR] " +

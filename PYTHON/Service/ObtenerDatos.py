@@ -122,8 +122,9 @@ class ObtenerDatos:
             self.personas.fecha_nacimiento_ultimoHijo.append(int(row.PA_UHNV))
             self.personas.mes_nacimiento_ultimoHijo.append(int(row.PA1_MES_UHNV))
             self.personas.anio_nacimiento_ultimo_hijo.append(int(row.PA2_ANO_UHNV))
-              
-        return self.personas
-            
+           
+         
         self.cursor.close()
         self.db.cerrar()
+        return self.personas
+           

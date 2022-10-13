@@ -276,10 +276,15 @@ button,
 }
 
 button:not(:disabled),
+
 [type="button"]:not(:disabled),
 [type="reset"]:not(:disabled),
 [type="submit"]:not(:disabled) {
   cursor: pointer;
+  font-size: 0.8rem;
+  border-radius: 10rem;
+  padding: 0.75rem 1rem;
+  
 }
 
 button::-moz-focus-inner,

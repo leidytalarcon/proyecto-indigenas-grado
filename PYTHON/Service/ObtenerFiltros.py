@@ -28,11 +28,10 @@ class ObtenerFiltros:
         filtro = Filtro()
         filtro.id_filtro = row.ID
         filtro.nombre = row.NOMBRE
-              
+        
         return filtro
             
-        self.cursor.close()
-        self.db.cerrar()
+        
         
     def obtenerOpciones(self, idFiltro):
         
@@ -53,7 +52,11 @@ class ObtenerFiltros:
             opcion.statement = row.STATEMENT
             
             opciones.append(opcion)
+        
         return opciones
-            
+    
+    def cerrarConexion(self):
+        
         self.cursor.close()
         self.db.cerrar()
+        
