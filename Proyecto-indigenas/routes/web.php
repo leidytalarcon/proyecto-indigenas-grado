@@ -83,9 +83,10 @@ Route::group(['middleware' => 'auth.jwt'], function () {
         'as' => 'reporte.grafica'
     ]);
 
-    //////////////// PDF-REPORTE ////////////////
+    //////////////// DESCARGAR-REPORTE ////////////////
 
-    Route::get('/pdf/reporte/{reporteNombre}', 'PDFController@PDFreporte')->name('descargarPDF');
+    Route::get('/pdf/reporte/{reporteNombre}', 'DescargarController@PDFreporte')->name('descargarPDF');
+    Route::get('/excel/reporte/{reporteNombre}', 'DescargarController@EXCELreporte')->name('descargarEXCEL');
 
     //////////////// USUARIOS ////////////////
    

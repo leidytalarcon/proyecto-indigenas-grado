@@ -32,6 +32,8 @@
                            
                     </form>
 
+                    <button class="btn-success col-md-9 offset-2" type="button" id="generar_excel">GENERAR EXCEL</button>
+
                 </div>
             </div>
         </div>
@@ -51,46 +53,63 @@
             dataType: 'JSON',
             data:{_t:_t, v:v, 'reporteNombre':reporteId},
 
-            success:function(data){
-                console.log(data);
+                success:function(data){
+                    console.log(data);
 
-                // Step 3
-                var svg = d3.select("svg")
-                        .attr("width", 1000)
-                        .attr("height", 1000);
+                    // Step 3
+                    var svg = d3.select("svg")
+                            .attr("width", 1000)
+                            .attr("height", 1000);
 
-                // Step 4
-                svg.selectAll("circle")
-                .data(data).enter()
-                .append("circle")
-                .attr("cx", function(d) {return d.x})
-                .attr("cy", function(d) {return d.y})
-                .attr("r", function(d) {
-                    return Math.sqrt(d.val)/Math.PI 
-                })
-                .attr("fill", function(d) {
-                    return d.color;
+                    // Step 4
+                    svg.selectAll("circle")
+                    .data(data).enter()
+                    .append("circle")
+                    .attr("cx", function(d) {return d.x})
+                    .attr("cy", function(d) {return d.y})
+                    .attr("r", function(d) {
+                        return Math.sqrt(d.val)/Math.PI 
+                    })
+                    .attr("fill", function(d) {
+                        return d.color;
+                    });
+
+                    // Step 5
+                    svg.selectAll("text")
+                    .data(data).enter()
+                    .append("text")
+                    .attr("x", function(d) {return d.x-((Math.sqrt(d.val)/Math.PI))*2})
+                    .attr("y", function(d) {return d.y-(Math.sqrt(d.val)/Math.PI)})
+                    .text(function(d) {return d.source})
+                    .style("font-family", "arial")
+                    .style("font-size", "12px")
+                }
+            });
+
+
+            $('#generar_excel').click(function(e) {
+                e.preventDefault();
+                var reporteId = $('#reporteId').val();
+
+                $.ajax({
+                    type: 'GET',
+                    url: '/excel/reporte/'+reporteId,
+                    data: '',
+                    xhrFields: {
+                        responseType: 'blob'
+                    },
+                    success: function(response){
+                        var blob = new Blob([response]);
+                        var link = document.createElement('a');
+                        link.href = window.URL.createObjectURL(blob);
+                        link.download = "REPORTE.xls";
+                        link.click();
+                    },
+                    error: function(blob){
+                        console.log(blob);
+                    }
                 });
-
-                // Step 5
-                svg.selectAll("text")
-                .data(data).enter()
-                .append("text")
-                .attr("x", function(d) {return d.x-((Math.sqrt(d.val)/Math.PI))*2})
-                .attr("y", function(d) {return d.y-(Math.sqrt(d.val)/Math.PI)})
-                .text(function(d) {return d.source})
-                .style("font-family", "arial")
-                .style("font-size", "12px")
-            }
-        });
-
-
-        $('#volver').click(function(e) {
-            e.preventDefault();
-            route_list = '{{ route('filtro.mapa') }}';
-                        
-            window.location.href = route_list;
-        });
+            });
 
         });
 
