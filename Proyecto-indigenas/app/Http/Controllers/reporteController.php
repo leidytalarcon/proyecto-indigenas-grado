@@ -62,6 +62,7 @@ class reporteController extends BaseController
             $factores = reporte_factor::where('ID_REPORTE', $report['ID'])
             ->join('reporte.factor', 'reporte_factor.ID_FACTOR', '=', 'reporte.factor.ID')
             ->orderBy(DB::raw('ABS(COEFICIENTE)'), 'DESC')
+            ->skip(0)->take(15)
             ->get();
         }
 
@@ -74,25 +75,24 @@ class reporteController extends BaseController
     private function generarGrafica($factores){
         $dataList = array();
         $ejeX = 0;
-        $ejeY = 0;
+        $ejeY = 50;
         foreach($factores as $factor){
-
-            $ejeX = $ejeX + 150;
             
             $size = abs($factor['COEFICIENTE']);
             if($size > 9){
                 $size = 1;
             }
 
+            $ejeX = $ejeX + ($size*300/2);
             $data['source'] = $factor['ALIAS']; 
             $data['x'] = $ejeX;
             $data['y'] = $ejeY;
-            $data['val'] = $size*300;
+            $data['val'] = $size*3000;
             $data['color'] = '#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
 
             array_push($dataList, $data);
 
-            if($ejeX >= 2000){
+            if($ejeX >= 900){
                 $ejeX = 0;
                 $ejeY = $ejeY + 150;
             }
