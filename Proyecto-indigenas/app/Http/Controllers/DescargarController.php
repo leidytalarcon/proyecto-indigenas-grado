@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use App\Model\reporte_factor;
 use App\Model\reporte;
 use PDF;
-use Excel;
+use App\Exports\ReporteExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DescargarController extends Controller
 {
@@ -38,25 +39,8 @@ class DescargarController extends Controller
     }
 
     public function EXCELreporte($reporteNombre){
-        if(!$reporteNombre){
-            $factores = [];
-            $report = '';
-        }else{
-            $report = reporte::where('NOMBRE', $reporteNombre)->first();
-
-            $factores = reporte_factor::where('ID_REPORTE', $report['ID'])
-            ->join('reporte.factor', 'reporte_factor.ID_FACTOR', '=', 'reporte.factor.ID')
-            ->orderBy(DB::raw('ABS(COEFICIENTE)'), 'DESC')
-            ->get();
-        }
-        $factores = $factores->toArray();
         
-        return Excel::create('REPORTE_EXCEL', function($excel) use ($factores) {
-            $excel->sheet('FACTORES', function($sheet) use ($factores)
-            {
-                $sheet->fromArray($factores);
-            });
-        })->download('xls');
+        return Excel::download(new ReporteExport($reporteNombre), 'REPORTE_EXCEL.xls');
 
     }
 }
