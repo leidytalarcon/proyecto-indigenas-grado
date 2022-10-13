@@ -5,9 +5,10 @@ namespace App\Exports;
 use Illuminate\Support\Facades\DB;
 use App\Model\reporte_factor;
 use App\Model\reporte;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
-class ReporteExport implements FromCollection
+class ReporteExport implements FromCollection, WithHeadings
 {
     private $reporteNombre;
 
@@ -18,12 +19,9 @@ class ReporteExport implements FromCollection
 
     public function headings():array{
         return[
-            'Id',
-            'Name',
-            'Email',
-            'City',
-            'Created_at',
-            'Updated_at' 
+            'ID',
+            'FACTOR',
+            'COEFICIENTE'
         ];
     } 
 
@@ -40,7 +38,7 @@ class ReporteExport implements FromCollection
             $factores = reporte_factor::where('ID_REPORTE', $report['ID'])
             ->join('reporte.factor', 'reporte_factor.ID_FACTOR', '=', 'reporte.factor.ID')
             ->orderBy(DB::raw('ABS(COEFICIENTE)'), 'DESC')
-            ->get();
+            ->get(['ID_FACTOR','ALIAS','COEFICIENTE']);
         }
         
         return $factores;
