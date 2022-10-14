@@ -23,7 +23,8 @@ class reporteController extends BaseController
     {
 
         $selecciones = $request->except('_token');
-
+        dd($selecciones);
+        
         krsort($selecciones);
 
         $reporteId = '';

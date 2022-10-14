@@ -6,10 +6,13 @@
         <div class="row justify-content-center">
             <div class="col-md-15 mt" >
                 <div class="form_register">
-                  <form action="{{ route('reporte.generar',$id_dpto) }}" method="POST">
+                  <form action="{{ route('reporte.generar') }}" method="POST">
                     @csrf
                           
                         <div class="header-center">FILTROS:</div>
+
+                        <strong>{{$filtroDpto["NOMBRE"]}}:</strong>
+                        <input value="{{$id_dpto}}" name="{{$filtroDpto['ID']}}" id="{{$filtroDpto['ID']}}">
 
                         <div class="row">
                         
@@ -27,7 +30,7 @@
                             @endforeach
 
                          <div class="row form-group">
-                                <button type="submit" class="btn-success col-md-9 offset-2">GUARDAR</button>
+                                <button type="submit" class="btn-success col-md-9 offset-2">GENERAR REPORTE</button>
                             </div>
                         </div>
                            

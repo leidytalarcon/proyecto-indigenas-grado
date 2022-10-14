@@ -29,32 +29,14 @@ class filtroController extends BaseController
     }
    
     public function listar($id_dpto){
-        $filtros =filtro::all();
-        
+        $filtros =filtro::where('NOMBRE', '<>', 'DEPARTAMENTO')->get();
+        $filtroDpto =filtro::where('NOMBRE', '=', 'DEPARTAMENTO')->first();
  
         foreach ($filtros as $filtro) {
             $filtro->opciones = filtro_opcion::where('id_filtro', $filtro->ID)->get();
         }
 
-        return view('filtro.filtro_listar', compact('filtros','id_dpto'));
+        return view('filtro.filtro_listar', compact('filtros','id_dpto','filtroDpto'));
     }
 
-    public function editar($id_filtro){
-        $filtro=filtro::find($id_filtro);
-        $usuarios = user::all();
-        return view('filtro.filtro_editar', compact('filtro','usuarios'));
-    }
-
-    public function actualizar(Request $request,$id_filtro){
-        $filtro = filtro::find($id_filtro);
-        $filtro['nombre']=$request['nombre'];
-        $filtro['contenido'] =$request['contenido'];
-        $filtro['fecha_creacion'] = $request['fecha_creacion'];
-       
-        $factor->update();
-        
-        return redirect()->route('factor.index');
-
-        
-    }
 }
