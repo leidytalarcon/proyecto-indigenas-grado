@@ -78,11 +78,6 @@ Route::group(['middleware' => 'auth.jwt'], function () {
         'as' => 'reporte.generar'
     ]);
 
-    Route::get('repote/generar/', [
-        'uses' =>'reporteController@datosGrafica',   
-        'as' => 'reporte.grafica'
-    ]);
-
     //////////////// DESCARGAR-REPORTE ////////////////
 
     Route::get('/pdf/reporte/{reporteNombre}', 'DescargarController@PDFreporte')->name('descargarPDF');
