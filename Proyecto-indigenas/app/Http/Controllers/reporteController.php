@@ -13,6 +13,7 @@ use App\Model\filtro_opcion;
 use App\Model\filtro;
 use App\user;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class reporteController extends BaseController
 
@@ -23,9 +24,10 @@ class reporteController extends BaseController
     {
 
         $selecciones = $request->except('_token');
-        dd($selecciones);
         
         krsort($selecciones);
+
+        Log::info('FILTROS: '.implode(", ", $selecciones));
 
         $reporteId = '';
         $factorOrder = ['', '', ''];
@@ -47,18 +49,21 @@ class reporteController extends BaseController
         }
         $reporteId = $factorOrder[0] . $factorOrder[1] . $factorOrder[2];
 
-        return view('reporte.reporte_graficar', compact('reporteId'));
+        Log::info('REPORTE: '.$reporteId);
+        $data = $this->datosGrafica($reporteId);
+
+        return response()->json($data, 200);
 
     }
     
-    public function datosGrafica(Request $request){
+    public function datosGrafica($reporteNombre){
 
-        $reporteNombre = $request->reporteNombre;
-
+        Log::info('NAME: '.$reporteNombre);
         $report = reporte::where('NOMBRE', $reporteNombre)->first();
 
         if(!$report){
             $factores = [];
+            Log::info('VACIO: '.$reporteNombre);
         }else{
             $factores = reporte_factor::where('ID_REPORTE', $report['ID'])
             ->join('reporte.factor', 'reporte_factor.ID_FACTOR', '=', 'reporte.factor.ID')
@@ -69,7 +74,7 @@ class reporteController extends BaseController
 
         $data = $this->generarGrafica($factores);
 
-        return response()->json($data, 200);
+        return $data;
     }
 
 
