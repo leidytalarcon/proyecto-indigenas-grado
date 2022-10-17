@@ -67,6 +67,10 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="row form-group">
+                        <button class="btn-success col-md-4 offset-2" type="button" id="generar_pdf">GENERAR PDF</button>
+                        <button class="btn-success col-md-4 offset-2" type="button" id="generar_excel">GENERAR EXCEL</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -115,6 +119,68 @@
                     }
                 });
            });
+
+           $('#generar_excel').click(function(e) {
+                $1 = $( "#1 option:selected" ).val();
+                $2 = $( "#2 option:selected" ).val();
+                $3 = $( "#dpto" ).val();
+
+                $.ajax({
+                    url:"{{ route('descarga.excel') }}",
+                    type: "GET",
+                    data:{'_token':_token,
+                        1: $1,
+                        2: $2,
+                        3: $3
+                    },
+                    xhrFields: {
+                        responseType: 'blob'
+                    },
+
+                    success: function(response){
+                        var blob = new Blob([response]);
+                        var link = document.createElement('a');
+                        link.href = window.URL.createObjectURL(blob);
+                        link.download = "REPORTE.xls";
+                        link.click();
+                    },
+                    error: function(xhr, status, error) {
+                        alert(xhr.responseText);
+                    }
+                });
+            });
+
+            $('#generar_pdf').click(function(e) {
+                $1 = $( "#1 option:selected" ).val();
+                $2 = $( "#2 option:selected" ).val();
+                $3 = $( "#dpto" ).val();
+
+                $.ajax({
+                    url:"{{ route('descarga.pdf') }}",
+                    type: "GET",
+                    data:{'_token':_token,
+                        1: $1,
+                        2: $2,
+                        3: $3
+                    },
+                    contentType:false,
+                    processData:false,
+                    xhrFields: {
+                        responseType: 'blob'
+                    },
+
+                    success: function(response){
+                        var blob = new Blob([response]);
+                        var link = document.createElement('a');
+                        link.href = window.URL.createObjectURL(blob);
+                        link.download = "REPORTE.pdf";
+                        link.click();
+                    },
+                    error: function(xhr, status, error) {
+                        alert(xhr.responseText);
+                    }
+                });
+            });
 
        });
 
