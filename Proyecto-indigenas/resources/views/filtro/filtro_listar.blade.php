@@ -48,13 +48,9 @@
                 </div>
 
                 <div style="float: right" class="col-md-6">
-
-                    <div class="form-group row col-md-6">
-                        <h2 style="text-align: center;">REPORTE</h2>
-                    </div>
                         
                     <figure>
-                        <h2>Comparativa de modelos</h2>
+                        <h2>REPORTE</h2>
                         <canvas id="modelsChart"></canvas>
                     </figure>
 
