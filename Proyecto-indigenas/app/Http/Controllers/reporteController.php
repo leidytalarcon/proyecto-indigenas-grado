@@ -80,28 +80,18 @@ class reporteController extends BaseController
 
     private function generarGrafica($factores){
         $dataList = array();
-        $ejeX = 0;
-        $ejeY = 50;
         foreach($factores as $factor){
             
             $size = abs($factor['COEFICIENTE']);
-            if($size > 9){
+            if ($size>10){
                 $size = 1;
             }
 
-            $ejeX = $ejeX + ($size*300/2);
             $data['source'] = $factor['ALIAS']; 
-            $data['x'] = $ejeX;
-            $data['y'] = $ejeY;
-            $data['val'] = $size*3000;
+            $data['valor'] = $size;
             $data['color'] = '#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
 
             array_push($dataList, $data);
-
-            if($ejeX >= 900){
-                $ejeX = 0;
-                $ejeY = $ejeY + 150;
-            }
 
         }
 

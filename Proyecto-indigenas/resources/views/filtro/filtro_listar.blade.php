@@ -32,7 +32,7 @@
                         <br>
                         <br>
                         <div class="row form-group row col-md-6">
-                            <button class="btn btn-primary backBtn btn-lg pull-left" type="button" id="generar">GENERAR REPORTE</button>
+                            <button class="btn btn-primary backBtn btn-lg pull-left" type="button" id="generar2">GENERAR REPORTE</button>
                         </div>
 
                         <br>
@@ -53,20 +53,11 @@
                         <h2 style="text-align: center;">REPORTE</h2>
                     </div>
                         
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="tableIndigena" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th>FACTOR</th>
-                                    <th>COEFICIENTE</th>
-                                
-                                </tr>
-                            </thead>
-                            <tbody>
-                                
-                            </tbody>
-                        </table>
-                    </div>
+                    <figure>
+                        <h2>Comparativa de modelos</h2>
+                        <canvas id="modelsChart"></canvas>
+                    </figure>
+
                     <div class="row form-group">
                         <button class="btn-success col-md-4 offset-2" type="button" id="generar_pdf">GENERAR PDF</button>
                         <button class="btn-success col-md-4 offset-2" type="button" id="generar_excel">GENERAR EXCEL</button>
@@ -75,6 +66,9 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="{{ asset("assets/js/reporte.js") }}"></script>
 
     <script>
         jQuery(document).ready(function () {
@@ -90,34 +84,62 @@
 
             $('#generar').click(function(e) {
 
-            $1 = $( "#1 option:selected" ).val();
-            $2 = $( "#2 option:selected" ).val();
-            $3 = $( "#dpto" ).val();
-
-            $.ajax({
-                    url:"{{ route('reporte.generar') }}",
-                        method: "POST",
-                    dataType: 'JSON',
-                    data:{'_token':_token,
-                        1: $1,
-                        2: $2,
-                        3: $3
-                    },
-
-                    success:function(data){
-                        console.log(data);
-                        for(var c in data){
-
-                            var row = '<tr>'+
-                                '<td>'+ data[c].source +'</td>'+
-                                '<td>'+ data[c].val +'</td>'+
-
-                                '</tr>'
-                            
-                            $('#tableIndigena').append(row);
+                $1 = $( "#1 option:selected" ).val();
+                $2 = $( "#2 option:selected" ).val();
+                $3 = $( "#dpto" ).val();
+                $.ajax({
+                        url:"{{ route('reporte.generar') }}",
+                            method: "GET",
+                        dataType: 'JSON',
+                        data:{'_token':_token,
+                            1: $1,
+                            2: $2,
+                            3: $3
+                        },
+                        success:function(data){
+                            console.log(data);
+                            for(var c in data){
+                                var row = '<tr>'+
+                                    '<td>'+ data[c].source +'</td>'+
+                                    '<td>'+ data[c].val +'</td>'+
+                                    '</tr>'
+                                
+                                $('#tableIndigena').append(row);
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            alert(xhr.responseText);
                         }
-                    }
-                });
+                        
+                    })
+           });
+
+           $('#generar2').click(function(e) {
+
+                
+                $1 = $( "#1 option:selected" ).val();
+                $2 = $( "#2 option:selected" ).val();
+                $3 = $( "#dpto" ).val();
+                $.ajax({
+                        url:"{{ route('reporte.generar') }}",
+                            method: "GET",
+                        dataType: 'JSON',
+                        data:{'_token':_token,
+                            1: $1,
+                            2: $2,
+                            3: $3
+                        },
+                        success:function(data){
+                            console.log(data);
+                            renderChart(data);
+                        },
+                        error: function(xhr, status, error) {
+                            alert(xhr.responseText);
+                        }
+                        
+                })
+                
+               
            });
 
            $('#generar_excel').click(function(e) {
