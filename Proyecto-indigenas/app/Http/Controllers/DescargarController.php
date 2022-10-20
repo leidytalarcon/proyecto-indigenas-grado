@@ -59,7 +59,7 @@ class DescargarController extends Controller
 
         foreach ($selecciones as $filtroId => $opcionId) {
             
-            $filtro = filtro::where('ID', $filtroId)->first();
+            $filtro = filtro::where('NOMBRE', str_replace("_"," ",$filtroId))->first();
       
             if($filtro['NOMBRE'] == 'DEPARTAMENTO'){
                 $factorOrder[0] = $filtro['NOMBRE'] . $opcionId;

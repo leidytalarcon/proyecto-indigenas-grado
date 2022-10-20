@@ -1,5 +1,7 @@
 
 
+let myBubbleChart;
+
 const renderChart = datosGrafica => {
 
     const data = {
@@ -17,6 +19,12 @@ const renderChart = datosGrafica => {
             legend: { position: 'left' }
         }
     }
+    
 
-    new Chart('modelsChart', { type: 'doughnut', data, options })
+    if(myBubbleChart instanceof Chart)
+    {
+        myBubbleChart.destroy();
+    }
+    
+    myBubbleChart  = new Chart('modelsChart', { type: 'doughnut', data, options })
 }

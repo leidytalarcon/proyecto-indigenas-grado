@@ -21,7 +21,7 @@
 
                             <strong>{{$filtro["NOMBRE"]}}:</strong>
                             <br>
-                            <select name="{{$filtro['ID']}}" id="{{$filtro['ID']}}" style="width:70%, align:center"  >
+                            <select name="{{$filtro['NOMBRE']}}" id="{{$filtro['NOMBRE']}}" style="width:70%, align:center"  >
                                     @foreach($filtro["opciones"] as $opcion)
                                         <option value="{{$opcion['ID']}}">{{$opcion["NOMBRE"]}}</option> 
                                     @endforeach
@@ -77,53 +77,23 @@
         
             window.location.href = route_list;
             });
-
-            $('#generar').click(function(e) {
-
-                $1 = $( "#1 option:selected" ).val();
-                $2 = $( "#2 option:selected" ).val();
-                $3 = $( "#dpto" ).val();
-                $.ajax({
-                        url:"{{ route('reporte.generar') }}",
-                            method: "GET",
-                        dataType: 'JSON',
-                        data:{'_token':_token,
-                            1: $1,
-                            2: $2,
-                            3: $3
-                        },
-                        success:function(data){
-                            console.log(data);
-                            for(var c in data){
-                                var row = '<tr>'+
-                                    '<td>'+ data[c].source +'</td>'+
-                                    '<td>'+ data[c].val +'</td>'+
-                                    '</tr>'
-                                
-                                $('#tableIndigena').append(row);
-                            }
-                        },
-                        error: function(xhr, status, error) {
-                            alert(xhr.responseText);
-                        }
-                        
-                    })
-           });
+ 
 
            $('#generar2').click(function(e) {
-
-                
-                $1 = $( "#1 option:selected" ).val();
-                $2 = $( "#2 option:selected" ).val();
+                        
+                $1 = $( "#GENERO option:selected" ).val();
+                $2 = $( "#RANGO\\ EDAD option:selected" ).val();
                 $3 = $( "#dpto" ).val();
+
+                console.log($3,$1,$2);
                 $.ajax({
                         url:"{{ route('reporte.generar') }}",
                             method: "GET",
                         dataType: 'JSON',
                         data:{'_token':_token,
-                            1: $1,
-                            2: $2,
-                            3: $3
+                            'GENERO': $1,
+                            'RANGO EDAD': $2,
+                            'DEPARTAMENTO': $3
                         },
                         success:function(data){
                             console.log(data);
@@ -139,17 +109,17 @@
            });
 
            $('#generar_excel').click(function(e) {
-                $1 = $( "#1 option:selected" ).val();
-                $2 = $( "#2 option:selected" ).val();
+                $1 = $( "#GENERO option:selected" ).val();
+                $2 = $( "#RANGO\\ EDAD option:selected" ).val();
                 $3 = $( "#dpto" ).val();
 
                 $.ajax({
                     url:"{{ route('descarga.excel') }}",
                     type: "GET",
                     data:{'_token':_token,
-                        1: $1,
-                        2: $2,
-                        3: $3
+                        'GENERO': $1,
+                        'RANGO EDAD': $2,
+                        'DEPARTAMENTO': $3
                     },
                     xhrFields: {
                         responseType: 'blob'
@@ -169,17 +139,17 @@
             });
 
             $('#generar_pdf').click(function(e) {
-                $1 = $( "#1 option:selected" ).val();
-                $2 = $( "#2 option:selected" ).val();
+                $1 = $( "#GENERO option:selected" ).val();
+                $2 = $( "#RANGO\\ EDAD option:selected" ).val();
                 $3 = $( "#dpto" ).val();
 
                 $.ajax({
                     url:"{{ route('descarga.pdf') }}",
                     type: "GET",
                     data:{'_token':_token,
-                        1: $1,
-                        2: $2,
-                        3: $3
+                        'GENERO': $1,
+                        'RANGO EDAD': $2,
+                        'DEPARTAMENTO': $3
                     },
                     contentType:false,
                     processData:false,
