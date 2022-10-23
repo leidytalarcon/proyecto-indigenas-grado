@@ -19,3 +19,10 @@ body {
     stroke-linejoin: round;
     stroke-width: 2px;
   }
+
+  .div-mapa-color path{
+    stroke: #ffff;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2px;
+  }

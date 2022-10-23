@@ -11,6 +11,7 @@ use App\Model\reporte;
 use App\Model\reporte_factor;
 use App\Model\filtro_opcion;
 use App\Model\filtro;
+use App\Model\departamento;
 use App\user;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -96,6 +97,22 @@ class reporteController extends BaseController
         }
 
         return $dataList;
+    }
+
+    public function generarMapa(){
+        
+        $departamentos = departamento::all();
+
+        return view('reporte.reporte_mapa', compact('departamentos'));
+
+    }
+
+    public function generarPowerBi($idDpto){
+        
+        $urlReporte = departamento::find($idDpto);
+
+        return view('reporte.reporte_power_bi', compact('urlReporte'));
+
     }
 
 }

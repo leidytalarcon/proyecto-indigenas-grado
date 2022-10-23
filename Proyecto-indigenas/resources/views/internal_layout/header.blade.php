@@ -11,7 +11,8 @@
           <!-- ADMINISTRADOR-->
           <li class="dropdown"><a href="#"><span>Administrador</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="/" id="filtro">Filtro</a></li>
+              <li><a href="/" id="mapa">Mapa</a></li>
+              <li><a href="/" id="filtro">Filtrar</a></li>
               <li><a href="/" id="usuario">Usuarios</a></li>
             </ul>
           </li>
@@ -54,13 +55,20 @@
 <script type="text/javascript">
   jQuery(document).ready(function () {//clasesin
       
-     
+      $('#mapa').click(function(e) {
+          e.preventDefault();
+          route_list = '{{ route('reporte.mapa') }}';
+
+          window.location.href = route_list;
+      });
+
       $('#filtro').click(function(e) {
           e.preventDefault();
           route_list = '{{ route('filtro.mapa') }}';
 
           window.location.href = route_list;
       });
+
       $('#usuario').click(function(e) {
           e.preventDefault();
           route_list = '{{ route('usuario.index') }}';
