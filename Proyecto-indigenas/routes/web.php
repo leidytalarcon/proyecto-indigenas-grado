@@ -78,6 +78,16 @@ Route::group(['middleware' => 'auth.jwt'], function () {
         'as' => 'reporte.generar'
     ]);
 
+    Route::get('repote/mapa/', [
+        'uses' =>'reporteController@generarMapa',   
+        'as' => 'reporte.mapa'
+    ]);
+
+    Route::get('reporte/mapa/{id_dpto}', [
+        'uses' =>'reporteController@generarPowerBi', 
+        'as' => 'reporte.powerbi' 
+    ]);
+
     //////////////// DESCARGAR-REPORTE ////////////////
 
     Route::get('repote/generar/pdf', [
