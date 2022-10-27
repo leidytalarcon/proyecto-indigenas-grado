@@ -7,18 +7,18 @@
                           <div class="container-fluid">
                            
                             <!-- DataTales Example -->
-                            <div class="card shadow mb-4">
+                            <div>
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Filtro por departamento</h6>
                                 </div>
                                
-                                <div class="div-mapa">
-                                    {{ $urlReporte['URL_POWER_BI'] }}
+                                    <iframe title="analisis_proyecto indigena" width="1140" height="541.25"
+                                     src="{{ $urlReporte['URL_POWER_BI'] }}"
+                                     frameborder="1" allowFullScreen="true"></iframe>
 
 
                                     <button class="btn btn-primary backBtn btn-lg pull-left" type="button" id="volver">VOLVER</button>
         
-                                </div>
                             </div>
                             
         

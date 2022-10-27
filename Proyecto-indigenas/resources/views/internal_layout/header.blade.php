@@ -9,9 +9,10 @@
         <ul>
          
           <!-- ADMINISTRADOR-->
+          
           <li class="dropdown"><a href="#"><span>Administrador</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="/" id="mapa">Mapa</a></li>
+              <li><a href="/" id="mapa">Reportes</a></li>
               <li><a href="/" id="filtro">Filtrar</a></li>
               <li><a href="/" id="usuario">Usuarios</a></li>
             </ul>
@@ -37,7 +38,7 @@
       <nav id="navbar_user" class="navbar">
         <ul>
         <!-- USUARIO-->
-          <li><a class="nav-link scrollto active" href="/" id="foro">Foros</a></li>
+          <li><a class="nav-link scrollto active" href="/" id="foro"></a></li>
           <li><a class="nav-link scrollto active" href="/" id="filtro">Filtro</a></li>
      
           <form class="user" id="logoutFormu">
