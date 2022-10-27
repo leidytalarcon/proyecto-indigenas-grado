@@ -36,6 +36,8 @@ function graphClickEvent(e, activeEls){
     
     let value = data.datasets[0].data[dataIndex];
     let label = data.labels[dataIndex];
-    alert("OPCION: " + label + " PORCENTAJE: " + value);
+    route_list = config.route
+    route = route_list.replace('999', label);
 
+    window.location.href = route;
 }

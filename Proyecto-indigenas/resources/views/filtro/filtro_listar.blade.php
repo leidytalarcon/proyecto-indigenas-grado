@@ -171,9 +171,11 @@
             });
 
        });
-
        
-
+       var config = {
+            route: "{{ route('reporte.factor',999) }}"  
+        };
+       
     </script>
 
 @endsection

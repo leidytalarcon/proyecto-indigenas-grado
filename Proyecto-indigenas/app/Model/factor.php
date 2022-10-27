@@ -9,7 +9,7 @@ class factor extends Model
     //
     protected $connection = 'sqlsrv';
 
-    protected $table = 'factor';
+    protected $table = 'reporte.factor';
 
     public $timestamps = false;
 
@@ -17,7 +17,10 @@ class factor extends Model
 
     protected $fillable = [   
         'NOMBRE_COLUMNA',
-        'ALIAS'
+        'ALIAS',
+        'TITULO',
+        'DESCRIPCION',
+        'URL_IMAGEN'
     ];
  
 }

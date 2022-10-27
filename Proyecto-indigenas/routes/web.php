@@ -88,6 +88,16 @@ Route::group(['middleware' => 'auth.jwt'], function () {
         'as' => 'reporte.powerbi' 
     ]);
 
+    Route::get('reporte/factor/{id_factor}', [
+        'uses' =>'reporteController@generarFactor', 
+        'as' => 'reporte.factor' 
+    ]);
+
+    Route::get('reporte/volver/', [
+        'uses' =>'reporteController@volver', 
+        'as' => 'reporte.volver' 
+    ]);
+
     //////////////// DESCARGAR-REPORTE ////////////////
 
     Route::get('repote/generar/pdf', [

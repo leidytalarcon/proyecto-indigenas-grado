@@ -11,6 +11,7 @@ use App\Model\reporte;
 use App\Model\reporte_factor;
 use App\Model\filtro_opcion;
 use App\Model\filtro;
+use App\Model\factor;
 use App\Model\departamento;
 use App\user;
 use Illuminate\Support\Facades\DB;
@@ -115,6 +116,20 @@ class reporteController extends BaseController
         $urlReporte = departamento::find($idDpto);
 
         return view('reporte.reporte_power_bi', compact('urlReporte'));
+
+    }
+
+    public function generarFactor($id_factor){
+        
+        $factor = factor::where('ALIAS', $id_factor)->first();
+
+        return view('reporte.reporte_factor', compact('factor'));
+
+    }
+
+    public function volver(){
+        
+        return back()->withInput();
 
     }
 
