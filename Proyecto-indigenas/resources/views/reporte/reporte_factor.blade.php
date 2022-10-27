@@ -1,6 +1,7 @@
 @extends('internal_layout.layout')
 
 @section('content')
+<iframe title="proyecto indigena_antioquia" width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=2fa825b3-85c5-40e0-98ad-e0114a0c7305&autoAuth=true&ctid=07da67a0-1f43-4e8c-977f-5f88b6470ee6" frameborder="0" allowFullScreen="true"></iframe>
   
 <div class="container mt-10 justify-content-center">
         <div class="row justify-content-center">
