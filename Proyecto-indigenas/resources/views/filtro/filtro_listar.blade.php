@@ -173,7 +173,8 @@
        });
        
        var config = {
-            route: "{{ route('reporte.factor',999) }}"  
+            route: "{{ route('reporte.factor', ['id_factor' => '', 'id_dpto' => '']) }}",
+            id_dpto: $( "#dpto" ).val()
         };
        
     </script>

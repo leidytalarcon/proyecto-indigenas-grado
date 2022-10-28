@@ -88,9 +88,14 @@ Route::group(['middleware' => 'auth.jwt'], function () {
         'as' => 'reporte.powerbi' 
     ]);
 
-    Route::get('reporte/factor/{id_factor}', [
+    Route::get('reporte/factor/{id_factor}/{id_dpto}', [
         'uses' =>'reporteController@generarFactor', 
         'as' => 'reporte.factor' 
+    ]);
+
+    Route::get('reporte/factor/departamento', [
+        'uses' =>'reporteController@generarFactorDepartamento', 
+        'as' => 'reporte.factor_departamento' 
     ]);
 
     Route::get('reporte/volver/', [

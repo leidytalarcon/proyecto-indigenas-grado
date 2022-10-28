@@ -119,11 +119,62 @@ class reporteController extends BaseController
 
     }
 
-    public function generarFactor($id_factor){
+    public function generarFactor($id_factor, $id_dpto){
         
         $factor = factor::where('ALIAS', $id_factor)->first();
+        $filtro = filtro_opcion::where('ID', $id_dpto)->first();
 
-        return view('reporte.reporte_factor', compact('factor'));
+        return view('reporte.reporte_factor', compact('factor','filtro'));
+
+    }
+
+    public function generarFactorDepartamento(Request $request)
+    {
+
+        $selecciones = $request->except('_token');
+
+        $id_factor = $request['id_factor'];
+        $id_dpto = $request['id_dpto'];
+
+        $factor = factor::where('ID', $id_factor)->first();
+        $filtro = filtro_opcion::where('ID', $id_dpto)->first();
+
+        $departamento = departamento::where('NOMBRE', $filtro['NOMBRE'])->first();
+
+        $porcentaje_factor=DB::connection('sqlsrv')->table('PERSONAS')
+        ->where('U_DPTO', $departamento['U_DPTO'])
+        ->groupBy($factor['NOMBRE_COLUMNA'])
+        ->select($factor['NOMBRE_COLUMNA'], DB::raw('count(*) as cant'))
+        ->get();
+
+        $result = json_decode($porcentaje_factor, true);
+
+        $dataList = array();
+        foreach($result as $row){
+            
+            $nombre_opcion=DB::connection('sqlsrv')->table($factor['NOMBRE_COLUMNA'])
+            ->where($factor['NOMBRE_COLUMNA'], $row[$factor['NOMBRE_COLUMNA']])
+            ->first();
+
+            $i = 0;
+            $valor = "";
+            foreach($nombre_opcion as $r){
+                if($i == 1){
+                    $valor = $r;
+                }
+                $i = $i+1;
+            }
+            $res = json_encode($nombre_opcion);
+
+            Log::info('RESULTADO: '.$res);
+            $data['label'] = $valor; 
+            $data['valor'] = $row['cant'];
+            $data['color'] = '#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
+
+            array_push($dataList, $data);
+        }
+
+        return response()->json($dataList, 200);
 
     }
 
